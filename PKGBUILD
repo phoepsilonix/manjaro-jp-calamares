@@ -3,13 +3,11 @@
 pkgname=calamares
 pkgver=3.2.0
 _pkgver=3.2.0
-_branch=3.2.x-stable
-pkgrel=5
+pkgrel=6
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
-url="https://github.com/calamares"
-_url="https://gitlab.manjaro.org/applications/calamares"
+url="https://gitlab.manjaro.org/applications/calamares"
 license=('LGPL')
 depends=('kconfig' 'kcoreaddons' 'kiconthemes' 'ki18n' 'kio' 'solid' 'yaml-cpp' 'kpmcore>=3.3.0' 'mkinitcpio-openswap'
          'boost-libs' 'ckbcomp' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gtk-update-icon-cache' 'pythonqt>=3.2')
@@ -19,13 +17,13 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/initcpio.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
-source+=(#"$pkgname-$pkgver.tar.gz::${_url}/-/archive/v${_pkgver}/${pkgname}-v${_pkgver}.tar.gz"
-         "$pkgname-$pkgver-$pkgrel.tar.gz::${_url}/-/archive/${_branch}/${pkgname}-${_branch}.tar.gz")
-sha256sums=('368f9caf425ef1ad3e64f222fd8a20735f03d99f3583381b425d8ea098a29bd0')
+source+=(#"$pkgname-$pkgver.tar.gz::https://github.com/manjaro/calamares/archive/v${_pkgver}.tar.gz"
+         "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/3.2.x-stable/calamares-3.2.x-stable.tar.gz")
+sha256sums=('06cf6c4f7b9ff3b5a74eda44d25c3ea7fe697ca5af1dc1c691543b138c69fc5a')
 
 prepare() {
-	mv ${srcdir}/${pkgname}-${_branch} ${srcdir}/${pkgname}-${_pkgver}
-	cd ${srcdir}/${pkgname}-${_pkgver}
+	mv ${srcdir}/calamares-3.2.x-stable ${srcdir}/calamares-${_pkgver}
+	cd ${srcdir}/calamares-${_pkgver}
 
 	# patches here
 
@@ -35,7 +33,7 @@ prepare() {
 }
 
 build() {
-	cd ${srcdir}/${pkgname}-${_pkgver}
+	cd ${srcdir}/calamares-${_pkgver}
 
 	mkdir -p build
 	cd build
@@ -52,7 +50,7 @@ build() {
 }
 
 package() {
-	cd ${srcdir}/${pkgname}-${_pkgver}/build
+	cd ${srcdir}/calamares-${_pkgver}/build
 	make DESTDIR="$pkgdir" install
 	install -Dm644 "../data/manjaro-icon.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/calamares.svg"
 	install -Dm644 "../data/calamares.desktop" "$pkgdir/usr/share/applications/calamares.desktop"
