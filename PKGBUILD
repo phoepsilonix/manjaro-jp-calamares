@@ -1,9 +1,9 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 
 pkgname=calamares
-pkgver=3.2.0
-_pkgver=3.2.0
-pkgrel=6
+pkgver=3.2.1
+_pkgver=3.2.1
+pkgrel=5
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
@@ -18,14 +18,23 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
 source+=(#"$pkgname-$pkgver.tar.gz::https://github.com/manjaro/calamares/archive/v${_pkgver}.tar.gz"
-         "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/3.2.x-stable/calamares-3.2.x-stable.tar.gz")
-sha256sums=('06cf6c4f7b9ff3b5a74eda44d25c3ea7fe697ca5af1dc1c691543b138c69fc5a')
+         "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/3.2.x-stable/calamares-3.2.x-stable.tar.gz"
+         https://github.com/calamares/calamares/pull/1020.patch
+         https://github.com/calamares/calamares/pull/1021.patch
+         https://github.com/calamares/calamares/pull/1022.patch)
+sha256sums=('26c6103c221ba7896fae251d59a52e8451fa8a3e9f25975c31a2a8c95f9f84e0'
+            'bbbd04123b42fc63308398227c9380607997f3998b1734f90d208ff17152e340'
+            '868a90fde6264f38cd3ec36ca585ff145b59a648bf634c086c93249d3605b30c'
+            '05f501f745688384dcd5f72079e892b5331fe30ebd931fe2c9e337f040ab696a')
 
 prepare() {
 	mv ${srcdir}/calamares-3.2.x-stable ${srcdir}/calamares-${_pkgver}
 	cd ${srcdir}/calamares-${_pkgver}
 
 	# patches here
+	patch -p1 -i ../1020.patch
+	patch -p1 -i ../1021.patch
+	patch -p1 -i ../1022.patch
 
 	# add revision
 	_patchver="$(cat CMakeLists.txt | grep -m3 -e CALAMARES_VERSION_PATCH | grep -o "[[:digit:]]*" | xargs)"
