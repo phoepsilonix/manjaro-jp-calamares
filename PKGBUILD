@@ -1,40 +1,34 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 
 pkgname=calamares
-pkgver=3.2.1
-_pkgver=3.2.1
-pkgrel=5
+pkgver=3.2.2
+_pkgver=3.2.2
+pkgrel=2
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
 url="https://gitlab.manjaro.org/applications/calamares"
 license=('LGPL')
 depends=('kconfig' 'kcoreaddons' 'kiconthemes' 'ki18n' 'kio' 'solid' 'yaml-cpp' 'kpmcore>=3.3.0' 'mkinitcpio-openswap'
-         'boost-libs' 'ckbcomp' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gtk-update-icon-cache' 'pythonqt>=3.2')
+         'boost-libs' 'ckbcomp' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gtk-update-icon-cache' 'pythonqt>=3.2' 'plasma-framework')
 makedepends=('extra-cmake-modules' 'qt5-tools' 'qt5-translations' 'git' 'boost')
 backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/displaymanager.conf'
         'usr/share/calamares/modules/initcpio.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
-source+=(#"$pkgname-$pkgver.tar.gz::https://github.com/manjaro/calamares/archive/v${_pkgver}.tar.gz"
-         "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/3.2.x-stable/calamares-3.2.x-stable.tar.gz"
-         https://github.com/calamares/calamares/pull/1020.patch
-         https://github.com/calamares/calamares/pull/1021.patch
-         https://github.com/calamares/calamares/pull/1022.patch)
-sha256sums=('26c6103c221ba7896fae251d59a52e8451fa8a3e9f25975c31a2a8c95f9f84e0'
-            'bbbd04123b42fc63308398227c9380607997f3998b1734f90d208ff17152e340'
-            '868a90fde6264f38cd3ec36ca585ff145b59a648bf634c086c93249d3605b30c'
-            '05f501f745688384dcd5f72079e892b5331fe30ebd931fe2c9e337f040ab696a')
+source+=("$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
+         #"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/3.2.x-stable/calamares-3.2.x-stable.tar.gz"
+        )
+sha256sums=('3bb93dd947f3454715f825b077eb211b2816114f3e81e0eec3c1198d795a5202')
 
 prepare() {
-	mv ${srcdir}/calamares-3.2.x-stable ${srcdir}/calamares-${_pkgver}
+	#mv ${srcdir}/calamares-3.2.x-stable ${srcdir}/calamares-${_pkgver}
+	mv ${srcdir}/calamares-v${pkgver} ${srcdir}/calamares-${_pkgver}
 	cd ${srcdir}/calamares-${_pkgver}
+	sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' CMakeLists.txt
 
 	# patches here
-	patch -p1 -i ../1020.patch
-	patch -p1 -i ../1021.patch
-	patch -p1 -i ../1022.patch
 
 	# add revision
 	_patchver="$(cat CMakeLists.txt | grep -m3 -e CALAMARES_VERSION_PATCH | grep -o "[[:digit:]]*" | xargs)"
@@ -54,7 +48,7 @@ build() {
               -DSKIP_MODULES="webview interactiveterminal initramfs \
                               initramfscfg dracut dracutlukscfg \
                               dummyprocess dummypython dummycpp \
-                              dummypythonqt plasmalnf"
+                              dummypythonqt services-openrc"
         make
 }
 
@@ -66,4 +60,10 @@ package() {
 	install -Dm755 "../data/calamares_polkit" "$pkgdir/usr/bin/calamares_polkit"
 	install -Dm644 "../data/49-nopasswd-calamares.rules" "$pkgdir/etc/polkit-1/rules.d/49-nopasswd-calamares.rules"
 	chmod 750      "$pkgdir"/etc/polkit-1/rules.d
+
+	# rename services-systemd back to services
+	mv "$pkgdir/usr/lib/calamares/modules/services-systemd" "$pkgdir/usr/lib/calamares/modules/services"
+	mv "$pkgdir/usr/share/calamares/modules/services-systemd.conf" "$pkgdir/usr/share/calamares/modules/services.conf"
+	sed -i -e 's/-systemd//' "$pkgdir/usr/lib/calamares/modules/services/module.desc"
+	sed -i -e 's/-systemd//' "$pkgdir/usr/share/calamares/settings.conf"
 }
