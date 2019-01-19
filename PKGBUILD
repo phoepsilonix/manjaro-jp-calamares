@@ -3,7 +3,7 @@
 pkgname=calamares
 pkgver=3.2.3
 _pkgver=3.2.3
-pkgrel=4
+pkgrel=5
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
@@ -20,8 +20,10 @@ backup=('usr/share/calamares/modules/bootloader.conf'
 
 source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
          "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/3.2.x-stable/calamares-3.2.x-stable.tar.gz"
+         'revert-d775cee.patch::https://github.com/calamares/calamares/commit/d775cee.patch'
         )
-sha256sums=('501577c4e041da9f87a16bf95e38f1270d06bc75144070b5802e4fe13a3c216c')
+sha256sums=('501577c4e041da9f87a16bf95e38f1270d06bc75144070b5802e4fe13a3c216c'
+            '4117f8205ee0d5b7ee8e23597f1eb090563b9255330d1a538ab59dfc84c778dd')
 
 prepare() {
 	mv ${srcdir}/calamares-3.2.x-stable ${srcdir}/calamares-${_pkgver}
@@ -30,6 +32,8 @@ prepare() {
 	sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' CMakeLists.txt
 
 	# patches here
+	# https://github.com/calamares/calamares/issues/1073
+	patch -Rp1 -i ../revert-d775cee.patch
 
 	# add revision
 	_patchver="$(cat CMakeLists.txt | grep -m3 -e CALAMARES_VERSION_PATCH | grep -o "[[:digit:]]*" | xargs)"
