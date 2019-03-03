@@ -1,9 +1,9 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 
 pkgname=calamares
-pkgver=3.2.3
-_pkgver=3.2.3
-pkgrel=5
+pkgver=3.2.4
+_pkgver=3.2.4
+pkgrel=1
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
@@ -22,7 +22,7 @@ source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.t
          "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/3.2.x-stable/calamares-3.2.x-stable.tar.gz"
          'revert-d775cee.patch::https://github.com/calamares/calamares/commit/d775cee.patch'
         )
-sha256sums=('501577c4e041da9f87a16bf95e38f1270d06bc75144070b5802e4fe13a3c216c'
+sha256sums=('523e459a9869b19a0b59664e8e01026ca2addc1eb3a4bb2e5177e8110f4f8864'
             '4117f8205ee0d5b7ee8e23597f1eb090563b9255330d1a538ab59dfc84c778dd')
 
 prepare() {
