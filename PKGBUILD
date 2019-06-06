@@ -1,15 +1,15 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 
 pkgname=calamares
-pkgver=3.2.8
-_pkgver=3.2.8
-pkgrel=1
+pkgver=3.2.9
+_pkgver=3.2.9
+pkgrel=2
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
 url="https://gitlab.manjaro.org/applications/calamares"
 license=('LGPL')
-depends=('kconfig' 'kcoreaddons' 'kiconthemes' 'ki18n' 'kio' 'solid' 'yaml-cpp' 'kpmcore>=4.0.0' 'mkinitcpio-openswap'
+depends=('kconfig' 'kcoreaddons' 'kiconthemes' 'ki18n' 'kio' 'solid' 'yaml-cpp' 'kpmcore3>=3.3.0' 'mkinitcpio-openswap'
          'boost-libs' 'ckbcomp' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gtk-update-icon-cache' 'pythonqt>=3.2' 'plasma-framework'
          'qt5-xmlpatterns')
 makedepends=('extra-cmake-modules' 'qt5-tools' 'qt5-translations' 'git' 'boost')
@@ -18,14 +18,14 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/initcpio.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
-source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
-         "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/3.2.x-stable/calamares-3.2.x-stable.tar.gz"
+source+=("$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
+         #"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/3.2.x-stable/calamares-3.2.x-stable.tar.gz"
         )
-sha256sums=('c89acf5ceb47fee8023de6471204b4a3271916b74512886da9d36d0fdd93ced0')
+sha256sums=('0b0466621be1b443f9f61ee949083e64728aea3f02f883e33e7dac6bcd1224e2')
 
 prepare() {
-	mv ${srcdir}/calamares-3.2.x-stable ${srcdir}/calamares-${_pkgver}
-	#mv ${srcdir}/calamares-v${pkgver} ${srcdir}/calamares-${_pkgver}
+	#mv ${srcdir}/calamares-3.2.x-stable ${srcdir}/calamares-${_pkgver}
+	mv ${srcdir}/calamares-v${pkgver} ${srcdir}/calamares-${_pkgver}
 	cd ${srcdir}/calamares-${_pkgver}
 	sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' CMakeLists.txt
 
