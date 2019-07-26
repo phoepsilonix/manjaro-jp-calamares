@@ -1,9 +1,9 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 
 pkgname=calamares
-pkgver=3.2.9
-_pkgver=3.2.9
-pkgrel=4
+pkgver=3.2.11
+_pkgver=3.2.11
+pkgrel=1
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
@@ -18,28 +18,23 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/initcpio.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
-source+=("$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
-         'https://gitlab.manjaro.org/applications/calamares/commit/945cc0ef2326020dd8b742068e01c6b57f45f263.patch'
-         'https://gitlab.manjaro.org/applications/calamares/commit/da8f45ae18723f63366673a9e338756a0f34bc97.patch'
-         #"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/3.2.x-stable/calamares-3.2.x-stable.tar.gz"
+source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
+         "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/3.2.x-stable/calamares-3.2.x-stable.tar.gz"
         )
-sha256sums=('0b0466621be1b443f9f61ee949083e64728aea3f02f883e33e7dac6bcd1224e2'
-            '9e83a9adcf833706412fd2e374bed9bba3ca0758f5e657e857317a5152ae0511'
-            'de06822affde3f973d9050f04db35c5b569d9d5f4bbe81be90ec5bac6d42d4fe')
+sha256sums=('4d97f6a69758d576ecfb53826b7261dd76d51163cf39ee1aecf4d1ccb6efc4b2')
 
 prepare() {
-	#mv ${srcdir}/calamares-3.2.x-stable ${srcdir}/calamares-${_pkgver}
-	mv ${srcdir}/calamares-v${pkgver} ${srcdir}/calamares-${_pkgver}
+	mv ${srcdir}/calamares-3.2.x-stable ${srcdir}/calamares-${_pkgver}
+	#mv ${srcdir}/calamares-v${pkgver} ${srcdir}/calamares-${_pkgver}
 	cd ${srcdir}/calamares-${_pkgver}
 	sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' CMakeLists.txt
 
 	# patches here
-        patch -p1 -i ../945cc0ef2326020dd8b742068e01c6b57f45f263.patch
-	patch -p1 -i ../da8f45ae18723f63366673a9e338756a0f34bc97.patch
 
 	# add revision
 	_patchver="$(cat CMakeLists.txt | grep -m3 -e CALAMARES_VERSION_PATCH | grep -o "[[:digit:]]*" | xargs)"
 	sed -i -e "s|CALAMARES_VERSION_PATCH $_patchver|CALAMARES_VERSION_PATCH $_patchver-$pkgrel|g" CMakeLists.txt
+	sed -i -e "s|default|manjaro|g" src/branding/CMakeLists.txt
 }
 
 build() {
