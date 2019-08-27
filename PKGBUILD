@@ -1,17 +1,17 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 
 pkgname=calamares
-pkgver=3.2.11
-_pkgver=3.2.11
-pkgrel=1
+pkgver=3.2.12.1
+_pkgver=3.2.12.1
+pkgrel=2
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
 url="https://gitlab.manjaro.org/applications/calamares"
 license=('LGPL')
-depends=('kconfig' 'kcoreaddons' 'kiconthemes' 'ki18n' 'kio' 'solid' 'yaml-cpp' 'kpmcore3>=3.3.0' 'mkinitcpio-openswap'
-         'boost-libs' 'ckbcomp' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gtk-update-icon-cache' 'pythonqt>=3.2' 'plasma-framework'
-         'qt5-xmlpatterns')
+depends=('kconfig' 'kcoreaddons' 'kiconthemes' 'ki18n' 'kio' 'solid' 'yaml-cpp' 'kpmcore3' 'mkinitcpio-openswap'
+         'boost-libs' 'ckbcomp' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gtk-update-icon-cache' 'plasma-framework'
+         'qt5-xmlpatterns') # 'pythonqt>=3.2')
 makedepends=('extra-cmake-modules' 'qt5-tools' 'qt5-translations' 'git' 'boost')
 backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/displaymanager.conf'
@@ -19,12 +19,14 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
 source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
-         "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/3.2.x-stable/calamares-3.2.x-stable.tar.gz"
+         #"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/3.2.x-stable/calamares-3.2.x-stable.tar.gz"
+         "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/prepare/calamares-prepare.tar.gz"
         )
-sha256sums=('4d97f6a69758d576ecfb53826b7261dd76d51163cf39ee1aecf4d1ccb6efc4b2')
+sha256sums=('3c5f8b9d978a69d90c90dd8db1cf8a34557f03484a756c0b8481f7d0cc3fd30c')
 
 prepare() {
-	mv ${srcdir}/calamares-3.2.x-stable ${srcdir}/calamares-${_pkgver}
+        mv ${srcdir}/calamares-prepare ${srcdir}/calamares-${_pkgver}
+	#mv ${srcdir}/calamares-3.2.x-stable ${srcdir}/calamares-${_pkgver}
 	#mv ${srcdir}/calamares-v${pkgver} ${srcdir}/calamares-${_pkgver}
 	cd ${srcdir}/calamares-${_pkgver}
 	sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' CMakeLists.txt
@@ -50,7 +52,7 @@ build() {
               -DSKIP_MODULES="webview interactiveterminal initramfs \
                               initramfscfg dracut dracutlukscfg \
                               dummyprocess dummypython dummycpp \
-                              dummypythonqt services-openrc"
+                              dummypythonqt services-openrc packagechooser"
         make
 }
 
