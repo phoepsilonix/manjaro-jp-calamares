@@ -3,7 +3,7 @@
 pkgname=calamares
 pkgver=3.2.13
 _pkgver=3.2.13
-pkgrel=1
+pkgrel=8
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
@@ -18,14 +18,14 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/initcpio.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
-source+=("$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
-         #"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/3.2.x-stable/calamares-3.2.x-stable.tar.gz"
+source+=(#"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
+         "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/3.2.x-stable/calamares-3.2.x-stable.tar.gz"
         )
-sha256sums=('5d97e55be3526c93f505cadaa97a797c4b40f177aa6073794bfba8ccfd8271da')
+sha256sums=('8c78e30d1552977e5b77ad225718d87908e9ce2d7ac33ea40f4170ffc7df26a0')
 
 prepare() {
-	#mv ${srcdir}/calamares-3.2.x-stable ${srcdir}/calamares-${_pkgver}
-	mv ${srcdir}/calamares-v${pkgver} ${srcdir}/calamares-${_pkgver}
+	mv ${srcdir}/calamares-3.2.x-stable ${srcdir}/calamares-${_pkgver}
+	#mv ${srcdir}/calamares-v${pkgver} ${srcdir}/calamares-${_pkgver}
 	cd ${srcdir}/calamares-${_pkgver}
 	sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' CMakeLists.txt
 
