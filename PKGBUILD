@@ -3,7 +3,7 @@
 pkgname=calamares
 pkgver=3.2.13
 _pkgver=3.2.13
-pkgrel=10
+pkgrel=11
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
@@ -11,7 +11,7 @@ url="https://gitlab.manjaro.org/applications/calamares"
 license=('LGPL')
 depends=('kconfig' 'kcoreaddons' 'kiconthemes' 'ki18n' 'kio' 'solid' 'yaml-cpp' 'kpmcore3' 'mkinitcpio-openswap'
          'boost-libs' 'ckbcomp' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gtk-update-icon-cache' 'plasma-framework'
-         'qt5-xmlpatterns') # 'pythonqt>=3.2')
+         'qt5-xmlpatterns' 'squashfs-tools') # 'pythonqt>=3.2')
 makedepends=('extra-cmake-modules' 'qt5-tools' 'qt5-translations' 'git' 'boost')
 backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/displaymanager.conf'
