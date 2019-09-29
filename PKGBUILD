@@ -1,9 +1,9 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 
 pkgname=calamares
-pkgver=3.2.13
-_pkgver=3.2.13
-pkgrel=11
+pkgver=3.2.13.1
+pkgrel=1
+_commit=c6197430ea15f357f0700c3521bf4fedb433849e
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
@@ -19,26 +19,25 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
 source+=(#"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
-         "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/3.2.x-stable/calamares-3.2.x-stable.tar.gz"
+         "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
         )
-sha256sums=('68b7a7dbbd08548d1481bd502576925124362ec198c28adcbd2467260c2765fa')
+sha256sums=('481a59e6d11075383a1ce01a42c8e8223dc5787dfc8b7dd322e79681c780119d')
 
 prepare() {
-	mv ${srcdir}/calamares-3.2.x-stable ${srcdir}/calamares-${_pkgver}
-	#mv ${srcdir}/calamares-v${pkgver} ${srcdir}/calamares-${_pkgver}
-	cd ${srcdir}/calamares-${_pkgver}
+	mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
+	#mv ${srcdir}/calamares-v${pkgver} ${srcdir}/calamares-${pkgver}
+	cd ${srcdir}/calamares-${pkgver}
 	sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' CMakeLists.txt
 
 	# patches here
 
-	# add revision
-	_patchver="$(cat CMakeLists.txt | grep -m3 -e CALAMARES_VERSION_PATCH | grep -o "[[:digit:]]*" | xargs)"
-	sed -i -e "s|CALAMARES_VERSION_PATCH $_patchver|CALAMARES_VERSION_PATCH $_patchver-$pkgrel|g" CMakeLists.txt
-	sed -i -e "s|default|manjaro|g" src/branding/CMakeLists.txt
+
+	# change branding
+	sed -i -e "s/default/manjaro/g" src/branding/CMakeLists.txt
 }
 
 build() {
-	cd ${srcdir}/calamares-${_pkgver}
+	cd ${srcdir}/calamares-${pkgver}
 
 	mkdir -p build
 	cd build
@@ -55,7 +54,7 @@ build() {
 }
 
 package() {
-	cd ${srcdir}/calamares-${_pkgver}/build
+	cd ${srcdir}/calamares-${pkgver}/build
 	make DESTDIR="$pkgdir" install
 	install -Dm644 "../data/manjaro-icon.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/calamares.svg"
 	install -Dm644 "../data/calamares.desktop" "$pkgdir/usr/share/applications/calamares.desktop"
