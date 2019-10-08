@@ -2,7 +2,7 @@
 
 pkgname=calamares
 pkgver=3.2.14
-pkgrel=1
+pkgrel=2
 _commit=02b775a9ce4fa657e45a098e10fd15de5563fe08
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
@@ -31,6 +31,11 @@ prepare() {
 
 	# patches here
 
+	# change version
+	_ver="$(cat CMakeLists.txt | grep -m3 -e "  VERSION" | grep -o "[[:digit:]]*" | xargs | sed s'/ /./g')"
+	printf 'Version: %s-%s' "${_ver}" "${pkgrel}"
+	sed -i -e "s|\${CALAMARES_VERSION_MAJOR}.\${CALAMARES_VERSION_MINOR}.\${CALAMARES_VERSION_PATCH}|${_ver}-${pkgrel}|g" CMakeLists.txt
+	sed -i -e "s|CALAMARES_VERSION_RC 1|CALAMARES_VERSION_RC 0|g" CMakeLists.txt
 
 	# change branding
 	sed -i -e "s/default/manjaro/g" src/branding/CMakeLists.txt
@@ -46,6 +51,7 @@ build() {
               -DCMAKE_INSTALL_PREFIX=/usr \
               -DCMAKE_INSTALL_LIBDIR=lib \
               -DWITH_PYTHONQT:BOOL=ON \
+              -DBoost_NO_BOOST_CMAKE=ON \
               -DSKIP_MODULES="webview interactiveterminal initramfs \
                               initramfscfg dracut dracutlukscfg \
                               dummyprocess dummypython dummycpp \
