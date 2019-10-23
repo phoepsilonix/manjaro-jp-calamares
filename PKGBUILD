@@ -2,8 +2,8 @@
 
 pkgname=calamares
 pkgver=3.2.15
-pkgrel=1
-_commit=9a5a3cff7d165844eb5b2f222eb1dc3b93b8f96f
+pkgrel=2
+_commit=b36665fca3c9c85fa384f020b03ad10e562dbf58
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
@@ -21,7 +21,7 @@ backup=('usr/share/calamares/modules/bootloader.conf'
 source+=(#"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
          "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
         )
-sha256sums=('e8a3f56a4602fcd9105189c5756cd7a049197e26af840c4970dcbd234179ac10')
+sha256sums=('184b5a4f8ea37006965d92031803fedc20eca7fa95acef3c769bda5dacc89acc')
 
 prepare() {
 	mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
