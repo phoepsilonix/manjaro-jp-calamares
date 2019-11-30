@@ -2,7 +2,7 @@
 
 pkgname=calamares
 pkgver=3.2.17
-pkgrel=1
+pkgrel=2
 _commit=b1942cbf430e879fcf92ea6c5a5dc7cb7a3e8ae0
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
@@ -20,8 +20,12 @@ backup=('usr/share/calamares/modules/bootloader.conf'
 
 source+=(#"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
          "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
+         "$url/commit/f727362a90ca5e5e0f5eeed2481c3b4abffe3e83.patch"
+         "$url/commit/4a0a8083f389e0aa8efbfd4b52c5b3ebf6ed3ad0.patch"
         )
-sha256sums=('74d446d3a38013e271572662692b159ba17367ad6dfcb1bf097173918f769019')
+sha256sums=('74d446d3a38013e271572662692b159ba17367ad6dfcb1bf097173918f769019'
+            'a059712497845b6d2e11603b9405728fe9d7d00d6dc7f8f6b68ccea18f40645f'
+            '98fce039d6c000e7d45dfaebc630aed29ab16558bf644cfbef158c03fd55a2c0')
 
 prepare() {
 	mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
@@ -30,6 +34,8 @@ prepare() {
 	sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' CMakeLists.txt
 
 	# patches here
+        patch -Rp1 -i "$srcdir/f727362a90ca5e5e0f5eeed2481c3b4abffe3e83.patch"
+        patch -Rp1 -i "$srcdir/4a0a8083f389e0aa8efbfd4b52c5b3ebf6ed3ad0.patch"
 
 	# change version
 	_ver="$(cat CMakeLists.txt | grep -m3 -e "  VERSION" | grep -o "[[:digit:]]*" | xargs | sed s'/ /./g')"
