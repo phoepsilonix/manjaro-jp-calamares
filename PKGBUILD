@@ -1,10 +1,10 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 
 pkgname=calamares
-pkgver=3.2.23.1
+pkgver=3.2.23.2
 _pkgver=3.2.23
-pkgrel=1
-_commit=828ad2e0655e04460e5212c55e53f91273c6d72c
+pkgrel=3
+_commit=7227e25442b643b2e72923c62e78b6eef7e03cba
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
@@ -12,7 +12,7 @@ url="https://gitlab.manjaro.org/applications/calamares"
 license=('LGPL')
 depends=('kconfig' 'kcoreaddons' 'kiconthemes' 'ki18n' 'kio' 'solid' 'yaml-cpp' 'kpmcore>=4.1.0' 'mkinitcpio-openswap'
          'boost-libs' 'ckbcomp' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gtk-update-icon-cache' 'plasma-framework'
-         'qt5-xmlpatterns' 'squashfs-tools') # 'pythonqt>=3.2')
+         'qt5-xmlpatterns' 'squashfs-tools' 'libpwquality')
 makedepends=('extra-cmake-modules' 'qt5-tools' 'qt5-translations' 'git' 'boost')
 backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/displaymanager.conf'
@@ -22,7 +22,7 @@ backup=('usr/share/calamares/modules/bootloader.conf'
 source+=(#"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
          "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
         )
-sha256sums=('cc226371b83a4e071881127be0b3576e10432ec7b11d7c94e80fbb853034f5f3')
+sha256sums=('36a93cf245d83c459c7d00a17f8039647a401541fafdfd89d620166d0482b673')
 
 prepare() {
 	mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
@@ -53,7 +53,7 @@ build() {
               -DCMAKE_BUILD_TYPE=Release \
               -DCMAKE_INSTALL_PREFIX=/usr \
               -DCMAKE_INSTALL_LIBDIR=lib \
-              -DWITH_PYTHONQT:BOOL=ON \
+              -DWITH_KF5DBus=OFF \
               -DBoost_NO_BOOST_CMAKE=ON \
               -DSKIP_MODULES="tracking webview interactiveterminal initramfs \
                               initramfscfg dracut dracutlukscfg \
