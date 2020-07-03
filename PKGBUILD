@@ -1,10 +1,10 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 
 pkgname=calamares
-pkgver=3.2.25
-_pkgver=3.2.25
+pkgver=3.2.26.1
+_pkgver=3.2.26
 pkgrel=1
-_commit=e9b5da134eab690ff70591995464b818cd3574b7
+_commit=6e02676034eb8dd9bcc4b0f1303eccb377532af8
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
@@ -22,7 +22,7 @@ backup=('usr/share/calamares/modules/bootloader.conf'
 source+=(#"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
          "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
         )
-sha256sums=('503c17fa3935e5d7d3727bd6a2cc2a110c08b9ca36b0f1b92073295d4a3d6a1b')
+sha256sums=('fbd6ebc7f4672a767dd744fc862a52138a15a68eda79f78f49a4549b765d33a4')
 
 prepare() {
 	mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
@@ -55,10 +55,11 @@ build() {
               -DCMAKE_INSTALL_LIBDIR=lib \
               -DWITH_KF5DBus=OFF \
               -DBoost_NO_BOOST_CMAKE=ON \
-              -DSKIP_MODULES="tracking webview interactiveterminal initramfs \
+              -DSKIP_MODULES="tracking interactiveterminal initramfs \
                               initramfscfg dracut dracutlukscfg \
                               dummyprocess dummypython dummycpp \
-                              dummypythonqt services-openrc"
+                              dummypythonqt services-openrc \
+                              keyboardq localeq welcomeq"
         make
 }
 
