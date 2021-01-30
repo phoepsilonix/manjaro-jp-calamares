@@ -3,8 +3,8 @@
 pkgname=calamares
 pkgver=3.2.34
 _pkgver=3.2.34
-pkgrel=3
-_commit=ee052f0d1ae23b989915f05c1d8d50f373b2357d
+pkgrel=6
+_commit=bb97e43aae6958674370d1a4211de51c30098387
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
@@ -12,7 +12,7 @@ url="https://gitlab.manjaro.org/applications/calamares"
 license=('LGPL')
 depends=('kconfig' 'kcoreaddons' 'kiconthemes' 'ki18n' 'kio' 'solid' 'yaml-cpp' 'kpmcore>=4.2.0' 'mkinitcpio-openswap'
          'boost-libs' 'ckbcomp' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gtk-update-icon-cache' 'plasma-framework'
-         'qt5-xmlpatterns' 'squashfs-tools' 'libpwquality' 'appstream-qt')
+         'qt5-xmlpatterns' 'squashfs-tools' 'libpwquality' 'appstream-qt' 'icu')
 makedepends=('extra-cmake-modules' 'qt5-tools' 'qt5-translations' 'git' 'boost')
 backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/displaymanager.conf'
@@ -22,7 +22,7 @@ backup=('usr/share/calamares/modules/bootloader.conf'
 source+=(#"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
          "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz" 1566.patch
         )
-sha256sums=('3ecc2e52c817d99f49a5e1880c7a411757b47ac23a1895d20cd568492af0d94c'
+sha256sums=('d68a6951a648e6e82c61b44946c442551b7cc2c2576a6bb0545e3e99bcdc8329'
             'f9ca62e91296489a8e9615f8226b946b43f9cbb03484749e67db7f04819c2e9d')
 
 prepare() {
