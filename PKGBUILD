@@ -3,7 +3,7 @@
 pkgname=calamares
 pkgver=3.2.39.3
 _pkgver=3.2.39.3
-pkgrel=1
+pkgrel=2
 _commit=3011c800d912c77a25d838497db2f51858797d30
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
