@@ -1,10 +1,10 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 
 pkgname=calamares
-pkgver=3.2.39.3
-_pkgver=3.2.39.3
-pkgrel=2
-_commit=3011c800d912c77a25d838497db2f51858797d30
+pkgver=3.2.40
+_pkgver=3.2.40
+pkgrel=1
+_commit=
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
@@ -19,14 +19,14 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/initcpio.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
-source+=(#"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
-         "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
+source+=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
+         #"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
         )
-sha256sums=('56a3f73bfd380740a7c238e035cbcb03b99fb64292199a99f3758f26edccf46d')
+sha256sums=('44d1f2f5743d8c89bdf0c38eb8d5a379915ccc654e235c92c89f3b7d50344fd4')
 
 prepare() {
-	mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
-	#mv ${srcdir}/calamares-v${pkgver} ${srcdir}/calamares-${pkgver}
+	#mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
+	mv ${srcdir}/calamares-v${pkgver} ${srcdir}/calamares-${pkgver}
 	cd ${srcdir}/calamares-${pkgver}
 	sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' CMakeLists.txt
 
