@@ -1,9 +1,9 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 
 pkgname=calamares
-pkgver=3.2.48
-_pkgver=3.2.48
-pkgrel=3
+pkgver=3.2.51
+_pkgver=3.2.51
+pkgrel=1
 _commit=
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
@@ -22,15 +22,13 @@ backup=('usr/share/calamares/modules/bootloader.conf'
 source+=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
          #"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
         )
-sha256sums=('c4f0230a4932cc3e7c5120356fdefdb6fb0923270e665d285e78f5e072dbd259')
+sha256sums=('a30ef8887710a8ec853deb41fb87e8bd11e6fbc8df02ebb368da43659b292dca')
 
 prepare() {
 	#mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
 	mv ${srcdir}/calamares-v${pkgver} ${srcdir}/calamares-${pkgver}
 	cd ${srcdir}/calamares-${pkgver}
 	sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' CMakeLists.txt
-
-	# patches here
 	
 	# change version
 	sed -i -e "s|$pkgver|$_pkgver|g" CMakeLists.txt
