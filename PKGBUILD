@@ -3,7 +3,7 @@
 pkgname=calamares
 pkgver=3.2.60
 _pkgver=3.2.60
-pkgrel=2
+pkgrel=3
 _commit=
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
@@ -12,8 +12,8 @@ url="https://gitlab.manjaro.org/applications/calamares"
 license=('LGPL')
 depends=('kconfig' 'kcoreaddons' 'kiconthemes' 'ki18n' 'kio' 'solid' 'yaml-cpp' 'kpmcore>=22.04.0' 'mkinitcpio-openswap'
          'boost-libs' 'ckbcomp' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gtk-update-icon-cache' 'plasma-framework'
-         'qt5-xmlpatterns' 'squashfs-tools' 'libpwquality' 'appstream-qt' 'icu' 'python')
-makedepends=('extra-cmake-modules' 'qt5-tools' 'qt5-translations' 'git' 'boost')
+         'qt5-xmlpatterns' 'squashfs-tools' 'libpwquality' 'appstream-qt' 'icu' 'python' 'qt5-webview')
+makedepends=('extra-cmake-modules' 'qt5-tools' 'qt5-translations' 'git' 'boost' 'kparts' 'kdbusaddons')
 backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/displaymanager.conf'
         'usr/share/calamares/modules/initcpio.conf'
@@ -58,11 +58,10 @@ build() {
               -DCMAKE_INSTALL_LIBDIR=lib \
               -DWITH_KF5DBus=OFF \
               -DBoost_NO_BOOST_CMAKE=ON \
-              -DSKIP_MODULES="tracking interactiveterminal initramfs \
-                              initramfscfg dracut dracutlukscfg \
-                              dummyprocess dummypython dummycpp \
-                              dummypythonqt services-openrc \
-                              keyboardq localeq welcomeq"
+              -DSKIP_MODULES="initramfs initramfscfg \
+                              dummyprocess dummypython \
+                              dummycpp dummypythonqt \
+                              services-openrc"
         make
 }
 
