@@ -1,8 +1,8 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 
 pkgname=calamares
-pkgver=3.2.59
-_pkgver=3.2.59
+pkgver=3.2.60
+_pkgver=3.2.60
 pkgrel=2
 _commit=
 pkgdesc='Distribution-independent installer framework'
@@ -20,9 +20,11 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
 source+=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
+         'https://github.com/calamares/calamares/commit/79db04dc2eb00b354044f73c054a94fe2b9f9aae.patch'
          #"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
         )
-sha256sums=('38ddf6e5a34c4e0c29a53badbb2924c51791f796185aec1498f30ee077a77bde')
+sha256sums=('28daeb648ca71888400275d1f3c894b92a8bf3176e06a78072e7a1a89dbd245f'
+            '3457ab03e46dcbb4e5e42c078c3cf0349e1eace31ca4ae6ee6f030810f57c6b8')
 
 prepare() {
 	#mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
@@ -40,6 +42,9 @@ prepare() {
 
 	# change branding
 	sed -i -e "s/default/manjaro/g" src/branding/CMakeLists.txt
+	
+	# https://github.com/calamares/calamares/issues/2008#issuecomment-1172947659
+	patch -Rp1 -i ../79db04dc2eb00b354044f73c054a94fe2b9f9aae.patch
 }
 
 build() {
