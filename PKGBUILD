@@ -3,7 +3,7 @@
 pkgname=calamares
 pkgver=3.2.60
 _pkgver=3.2.60
-pkgrel=3
+pkgrel=5
 _commit=
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
@@ -21,10 +21,12 @@ backup=('usr/share/calamares/modules/bootloader.conf'
 
 source+=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
          'https://github.com/calamares/calamares/commit/79db04dc2eb00b354044f73c054a94fe2b9f9aae.patch'
+         'https://github.com/calamares/calamares/commit/6444b4205b3de505922baa209594c1095a18faa1.patch'
          #"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
         )
 sha256sums=('28daeb648ca71888400275d1f3c894b92a8bf3176e06a78072e7a1a89dbd245f'
-            '3457ab03e46dcbb4e5e42c078c3cf0349e1eace31ca4ae6ee6f030810f57c6b8')
+            '3457ab03e46dcbb4e5e42c078c3cf0349e1eace31ca4ae6ee6f030810f57c6b8'
+            '844c125c967dd88d985014038258927ce0079ca896b5a47b52e42aba1bec724a')
 
 prepare() {
 	#mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
@@ -45,6 +47,9 @@ prepare() {
 	
 	# https://github.com/calamares/calamares/issues/2008#issuecomment-1172947659
 	patch -Rp1 -i ../79db04dc2eb00b354044f73c054a94fe2b9f9aae.patch
+	
+	# https://github.com/calamares/calamares/issues/1659
+	patch -Np1 -i ../6444b4205b3de505922baa209594c1095a18faa1.patch
 }
 
 build() {
@@ -53,7 +58,7 @@ build() {
 	mkdir -p build
 	cd build
         cmake .. \
-              -DCMAKE_BUILD_TYPE=Release \
+              -DCMAKE_BUILD_TYPE=Debug \
               -DCMAKE_INSTALL_PREFIX=/usr \
               -DCMAKE_INSTALL_LIBDIR=lib \
               -DWITH_KF5DBus=OFF \
