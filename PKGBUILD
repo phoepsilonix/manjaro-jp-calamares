@@ -3,7 +3,7 @@
 pkgname=calamares
 pkgver=3.2.60
 _pkgver=3.2.60
-pkgrel=5
+pkgrel=6
 _commit=
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
@@ -22,11 +22,13 @@ backup=('usr/share/calamares/modules/bootloader.conf'
 source+=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
          'https://github.com/calamares/calamares/commit/79db04dc2eb00b354044f73c054a94fe2b9f9aae.patch'
          'https://github.com/calamares/calamares/commit/6444b4205b3de505922baa209594c1095a18faa1.patch'
+         'https://gitlab.manjaro.org/codesardine/calamares/-/commit/b140b67c9fddb96701e46d23e9a72ddfbe77e0d0.patch'
          #"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
         )
 sha256sums=('28daeb648ca71888400275d1f3c894b92a8bf3176e06a78072e7a1a89dbd245f'
             '3457ab03e46dcbb4e5e42c078c3cf0349e1eace31ca4ae6ee6f030810f57c6b8'
-            '844c125c967dd88d985014038258927ce0079ca896b5a47b52e42aba1bec724a')
+            '844c125c967dd88d985014038258927ce0079ca896b5a47b52e42aba1bec724a'
+            '39c38180b6c7d6088984c300e3fdf125b571525d1d252b59a52388e1780f98e4')
 
 prepare() {
 	#mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
@@ -41,6 +43,9 @@ prepare() {
 	printf 'Version: %s-%s' "${_ver}" "${pkgrel}"
 	sed -i -e "s|\${CALAMARES_VERSION_MAJOR}.\${CALAMARES_VERSION_MINOR}.\${CALAMARES_VERSION_PATCH}|${_ver}-${pkgrel}|g" CMakeLists.txt
 	sed -i -e "s|CALAMARES_VERSION_RC 1|CALAMARES_VERSION_RC 0|g" CMakeLists.txt
+	
+	# https://github.com/calamares/calamares/issues/2014
+	sed -i -e 's|"$@"|"-D6" "$@"|g' data/calamares_polkit
 
 	# change branding
 	sed -i -e "s/default/manjaro/g" src/branding/CMakeLists.txt
@@ -50,6 +55,9 @@ prepare() {
 	
 	# https://github.com/calamares/calamares/issues/1659
 	patch -Np1 -i ../6444b4205b3de505922baa209594c1095a18faa1.patch
+	
+	# https://github.com/calamares/calamares/issues/1945
+	patch -Np1 -i ../b140b67c9fddb96701e46d23e9a72ddfbe77e0d0.patch	
 }
 
 build() {
