@@ -3,7 +3,7 @@
 pkgname=calamares
 pkgver=3.2.61
 _pkgver=3.2.61
-pkgrel=6
+pkgrel=10
 _commit=8a6b3d19e17d5a92d0ad8f743c55965f03ff9fac
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
@@ -23,10 +23,12 @@ backup=('usr/share/calamares/modules/bootloader.conf'
 source+=(#"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
          'https://gitlab.manjaro.org/codesardine/calamares/-/commit/b140b67c9fddb96701e46d23e9a72ddfbe77e0d0.patch'
          'https://gitlab.manjaro.org/applications/calamares/-/merge_requests/37.patch'
+         'fullscreen.patch'
          "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
         )
 sha256sums=('39c38180b6c7d6088984c300e3fdf125b571525d1d252b59a52388e1780f98e4'
             '993c4d3babd7ead9a20fb43c338d3223f1531c55a2bdb0bf2dd899db22433214'
+            '87708be424d199ddee02ec349a32a914c02f53555c69ad45556ab016c74671b5'
             '081415e5d6a44691cb984ccaea276e113ec8a058ce12dd3b774640ad44aeacd8')
 
 prepare() {
