@@ -1,0 +1,12 @@
+diff --git a/src/calamares/CalamaresApplication.cpp b/src/calamares/CalamaresApplication.cpp
+index 88e8e2919..9285a7f4f 100644
+--- a/src/calamares/CalamaresApplication.cpp
++++ b/src/calamares/CalamaresApplication.cpp
+@@ -272,6 +272,7 @@ CalamaresApplication::initViewSteps()
+     if ( Calamares::Branding::instance()->windowMaximize() )
+     {
+         m_mainwindow->setWindowFlag( Qt::FramelessWindowHint );
++        m_mainwindow->setWindowFlag( Qt::WindowStaysOnTopHint );
+         m_mainwindow->showMaximized();
+     }
+     else
