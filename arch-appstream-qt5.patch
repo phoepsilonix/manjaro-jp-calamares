@@ -2,10 +2,10 @@ diff --git a/src/modules/packagechooser/CMakeLists.txt b/src/modules/packagechoo
 index 1f517fd33..024f99d7d 100644
 --- a/src/modules/packagechooser/CMakeLists.txt
 +++ b/src/modules/packagechooser/CMakeLists.txt
-@@ -25,18 +25,18 @@ endif()
- #
- option(BUILD_APPSTREAM "Support appstream: items in PackageChooser (requires libappstream-qt)" ON)
- if(BUILD_APPSTREAM)
+@@ -34,9 +34,9 @@ option(
+     ON
+ )
+ if(WITH_APPSTREAM)
 -    find_package(AppStreamQt)
 +    find_package(AppStreamQt5)
      set_package_properties(
@@ -14,13 +14,12 @@ index 1f517fd33..024f99d7d 100644
          PROPERTIES
          DESCRIPTION "Support for AppStream (cache) data"
          URL "https://github.com/ximion/appstream"
-         PURPOSE "AppStream provides package data"
+@@ -44,8 +44,8 @@ if(WITH_APPSTREAM)
          TYPE OPTIONAL
      )
--    if(AppStreamQt_FOUND)
+     if(AppStreamQt_FOUND)
 -        add_definitions(-DHAVE_APPSTREAM_VERSION=${AppStreamQt_VERSION_MAJOR})
 -        list(APPEND _extra_libraries AppStreamQt)
-+    if(AppStreamQt5_FOUND)
 +        add_definitions(-DHAVE_APPSTREAM_VERSION=${AppStreamQt5_VERSION_MAJOR})
 +        list(APPEND _extra_libraries AppStreamQt5)
          list(APPEND _extra_src ItemAppStream.cpp)
@@ -60,10 +59,10 @@ diff --git a/src/modules/packagechooserq/CMakeLists.txt b/src/modules/packagecho
 index b0b1f738d..133252ec5 100644
 --- a/src/modules/packagechooserq/CMakeLists.txt
 +++ b/src/modules/packagechooserq/CMakeLists.txt
-@@ -36,9 +36,9 @@ endif()
- #
- option(BUILD_APPSTREAM "Support appstream: items in PackageChooser (requires libappstream-qt)" ON)
- if(BUILD_APPSTREAM)
+@@ -45,9 +45,9 @@ option(
+     ON
+ )
+ if(WITH_APPSTREAM)
 -    find_package(AppStreamQt)
 +    find_package(AppStreamQt5)
      set_package_properties(
@@ -72,7 +71,7 @@ index b0b1f738d..133252ec5 100644
          PROPERTIES
          DESCRIPTION "Support for AppStream (cache) data"
          URL "https://github.com/ximion/appstream"
-@@ -46,8 +46,8 @@ if(BUILD_APPSTREAM)
+@@ -55,8 +55,8 @@ if(WITH_APPSTREAM)
          TYPE OPTIONAL
      )
      if(AppStreamQt_FOUND)

@@ -3,7 +3,7 @@
 pkgname=calamares
 pkgver=3.2.62
 _pkgver=3.2.62
-pkgrel=9
+pkgrel=10
 _commit=8a91c36ad1491939d90c648853180ba892060f3a
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
@@ -21,7 +21,7 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
 source+=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
-         'https://gitlab.manjaro.org/codesardine/calamares/-/commit/b140b67c9fddb96701e46d23e9a72ddfbe77e0d0.patch'
+         'https://gitlab.manjaro.org/applications/calamares/-/commit/8c873e0f49cef09a83a26c4ffc073925e1a91d4d.patch'
          'fullscreen.patch'
          'a6dd49ac0789ae172b2e00b04a665a3dfce09590.patch'
          '757f8a8f9ed2c226bc1064d54de1fe3fe7ba3974.patch'
@@ -29,11 +29,11 @@ source+=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$p
          #"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
         )
 sha256sums=('d9ecc6e5757ba3dcf2f3c3fa68c67508cdffed665c7c0d8895bcb0a5e9fbbbfd'
-            '39c38180b6c7d6088984c300e3fdf125b571525d1d252b59a52388e1780f98e4'
+            '66e78ec6e9ea0152ba8862d49afd74bf9cd64bd6aa3ef8173b851c122a241f45'
             '87708be424d199ddee02ec349a32a914c02f53555c69ad45556ab016c74671b5'
             'f76965f4729c5b707862c4c352e3603d719872a5add5f7bd822ede878404e938'
             'a416e6205faf215345c6b121dc05a72f76b5c028e20085159e2c80132183d78d'
-            '2a3236de9c3c1d8e5c9cc3bdb1c64c979f9531d4bc01d0e580df6abb4015d487')
+            '585f10bb1b15e9a57d71b3da9cd969ca683f0fb81321ee8cc24371fad33fe247')
 
 prepare() {
 	#mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
@@ -56,8 +56,17 @@ prepare() {
 	# change branding
 	sed -i -e "s/default/manjaro/g" src/branding/CMakeLists.txt
 	
+	# Fullscreen
+	patch -Np1 -i ../fullscreen.patch
+	
 	# https://github.com/calamares/calamares/issues/1945
-	patch -Np1 -i ../b140b67c9fddb96701e46d23e9a72ddfbe77e0d0.patch
+	patch -Np1 -i ../8c873e0f49cef09a83a26c4ffc073925e1a91d4d.patch
+	
+	# Fix Appstream 1.0
+	patch -Np1 -i ../a6dd49ac0789ae172b2e00b04a665a3dfce09590.patch
+        patch -Np1 -i ../757f8a8f9ed2c226bc1064d54de1fe3fe7ba3974.patch
+        echo "done"
+        patch -Np1 -i ../arch-appstream-qt5.patch
 }
 
 build() {
