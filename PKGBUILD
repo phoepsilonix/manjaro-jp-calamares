@@ -21,19 +21,21 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
 source+=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
+         'https://gitlab.manjaro.org/applications/calamares/-/commit/15f8d766271343162d64efa6cf0f2284b12f8e0f.patch'
          'https://gitlab.manjaro.org/applications/calamares/-/commit/8c873e0f49cef09a83a26c4ffc073925e1a91d4d.patch'
          'a6dd49ac0789ae172b2e00b04a665a3dfce09590.patch'
          '757f8a8f9ed2c226bc1064d54de1fe3fe7ba3974.patch'
          'arch-appstream-qt5.patch'
-         'https://patch-diff.githubusercontent.com/raw/calamares/calamares/pull/2246.patch'
+         '2246-v32.patch'
          #"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
         )
 sha256sums=('d9ecc6e5757ba3dcf2f3c3fa68c67508cdffed665c7c0d8895bcb0a5e9fbbbfd'
+            'c810cdd9887767a6a300c324b868fd681b5ff7b78cbb531f090f9bf3cdddda16'
             '66e78ec6e9ea0152ba8862d49afd74bf9cd64bd6aa3ef8173b851c122a241f45'
             'f76965f4729c5b707862c4c352e3603d719872a5add5f7bd822ede878404e938'
             'a416e6205faf215345c6b121dc05a72f76b5c028e20085159e2c80132183d78d'
             '585f10bb1b15e9a57d71b3da9cd969ca683f0fb81321ee8cc24371fad33fe247'
-            'b3dacf20214ef005cda69edb43ada6397f9f577c0942156fc1aa70f66cdb3d55')
+            '6044d672a896200fbd319795bfd40a1c012e4ef6cf0dafeeae7e1d021d92d96f')
 
 prepare() {
 	#mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
@@ -56,14 +58,15 @@ prepare() {
 	# change branding
 	sed -i -e "s/default/manjaro/g" src/branding/CMakeLists.txt
 	
-	# https://github.com/calamares/calamares/issues/1945
-	patch -Np1 -i ../8c873e0f49cef09a83a26c4ffc073925e1a91d4d.patch
-	
-	# Fix Appstream 1.0
-	patch -Np1 -i ../a6dd49ac0789ae172b2e00b04a665a3dfce09590.patch
-        patch -Np1 -i ../757f8a8f9ed2c226bc1064d54de1fe3fe7ba3974.patch
-        echo "done"
-        patch -Np1 -i ../arch-appstream-qt5.patch
+	# Apply patches
+	local src
+	for src in "${source[@]}"; do
+		src="${src%%::*}"
+		src="${src##*/}"
+		[[ $src = *.patch ]] || continue
+		msg2 "Applying patch: $src..."
+		patch -Np1 < "../$src"
+	done
 }
 
 build() {
