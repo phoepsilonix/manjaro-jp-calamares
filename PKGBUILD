@@ -21,8 +21,8 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
 source+=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
-         'https://gitlab.manjaro.org/applications/calamares/-/commit/15f8d766271343162d64efa6cf0f2284b12f8e0f.patch'
-         'https://gitlab.manjaro.org/applications/calamares/-/commit/8c873e0f49cef09a83a26c4ffc073925e1a91d4d.patch'
+         '15f8d766271343162d64efa6cf0f2284b12f8e0f.patch'
+         '8c873e0f49cef09a83a26c4ffc073925e1a91d4d.patch'
          'a6dd49ac0789ae172b2e00b04a665a3dfce09590.patch'
          '757f8a8f9ed2c226bc1064d54de1fe3fe7ba3974.patch'
          'arch-appstream-qt5.patch'
