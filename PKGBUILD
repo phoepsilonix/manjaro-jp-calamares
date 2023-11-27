@@ -3,8 +3,8 @@
 pkgname=calamares
 pkgver=3.2.62
 _pkgver=3.2.62
-pkgrel=10
-_commit=8a91c36ad1491939d90c648853180ba892060f3a
+pkgrel=11
+_commit=15f8d766271343162d64efa6cf0f2284b12f8e0f
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
@@ -25,13 +25,15 @@ source+=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$p
          'a6dd49ac0789ae172b2e00b04a665a3dfce09590.patch'
          '757f8a8f9ed2c226bc1064d54de1fe3fe7ba3974.patch'
          'arch-appstream-qt5.patch'
+         'https://patch-diff.githubusercontent.com/raw/calamares/calamares/pull/2246.patch'
          #"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
         )
 sha256sums=('d9ecc6e5757ba3dcf2f3c3fa68c67508cdffed665c7c0d8895bcb0a5e9fbbbfd'
             '66e78ec6e9ea0152ba8862d49afd74bf9cd64bd6aa3ef8173b851c122a241f45'
             'f76965f4729c5b707862c4c352e3603d719872a5add5f7bd822ede878404e938'
             'a416e6205faf215345c6b121dc05a72f76b5c028e20085159e2c80132183d78d'
-            '585f10bb1b15e9a57d71b3da9cd969ca683f0fb81321ee8cc24371fad33fe247')
+            '585f10bb1b15e9a57d71b3da9cd969ca683f0fb81321ee8cc24371fad33fe247'
+            'b3dacf20214ef005cda69edb43ada6397f9f577c0942156fc1aa70f66cdb3d55')
 
 prepare() {
 	#mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
