@@ -3,7 +3,7 @@
 pkgname=calamares
 pkgver=3.2.62
 _pkgver=3.2.62
-pkgrel=11
+pkgrel=13
 _commit=15f8d766271343162d64efa6cf0f2284b12f8e0f
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
@@ -21,7 +21,7 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
 source+=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
-         '15f8d766271343162d64efa6cf0f2284b12f8e0f.patch'
+         '5c770a230ff62653cd61a83efe084f6d08673bfd.patch'
          '8c873e0f49cef09a83a26c4ffc073925e1a91d4d.patch'
          'a6dd49ac0789ae172b2e00b04a665a3dfce09590.patch'
          '757f8a8f9ed2c226bc1064d54de1fe3fe7ba3974.patch'
@@ -30,7 +30,7 @@ source+=("$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$p
          #"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
         )
 sha256sums=('d9ecc6e5757ba3dcf2f3c3fa68c67508cdffed665c7c0d8895bcb0a5e9fbbbfd'
-            'c810cdd9887767a6a300c324b868fd681b5ff7b78cbb531f090f9bf3cdddda16'
+            '8e1efac37cf988ed14369bbc6ef5694b6d41c6e1682d30b43e904bcd56b241ae'
             '66e78ec6e9ea0152ba8862d49afd74bf9cd64bd6aa3ef8173b851c122a241f45'
             'f76965f4729c5b707862c4c352e3603d719872a5add5f7bd822ede878404e938'
             'a416e6205faf215345c6b121dc05a72f76b5c028e20085159e2c80132183d78d'
