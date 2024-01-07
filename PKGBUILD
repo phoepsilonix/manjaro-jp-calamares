@@ -3,8 +3,8 @@
 pkgname=calamares
 pkgver=3.2.62
 _pkgver=3.2.62
-pkgrel=17
-_commit=15f8d766271343162d64efa6cf0f2284b12f8e0f
+pkgrel=18
+_commit=95e8c914680737e1fe71d121a978fff749de7b3a
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
@@ -21,34 +21,12 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
 source+=("$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
-         '5c770a230ff62653cd61a83efe084f6d08673bfd.patch'
-         '50918f10b231d8f9858ec7074381b456ebf7c2be.patch'
-         '2368c3dba226afce53cc301adaec4a8c5360ec98.patch'
-         '2bafdc8bbfaba3e6df5076c54a968e8856ff9219.patch'
-         '4eac6fa8dcfab565399a3ddf97bb43121cbbf164.patch'
-         '1bd53bb8c34a051430ec5c9e5b5998bade6577fb.patch'
-         '8c873e0f49cef09a83a26c4ffc073925e1a91d4d.patch'
-         'a6dd49ac0789ae172b2e00b04a665a3dfce09590.patch'
-         '757f8a8f9ed2c226bc1064d54de1fe3fe7ba3974.patch'
-         '75ff3ee69c177e040d0e632907d3c27ea0923926.patch'
-         '34feef79b59ecf5f0f9a3bdca9a8bc86effb8064.patch'
          'arch-appstream-qt5.patch'
          '2246-v32.patch'
          #"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
         )
-sha256sums=('d9ecc6e5757ba3dcf2f3c3fa68c67508cdffed665c7c0d8895bcb0a5e9fbbbfd'
-            '8e1efac37cf988ed14369bbc6ef5694b6d41c6e1682d30b43e904bcd56b241ae'
-            'de14f7b119d0248b1048defec024d2a9191eb45710cb36b5494ccb23b4d06b3a'
-            '8df353ecf62156d77f26e6be9b311f6df76a86aefb8c743ac6c62cf7c3b52217'
-            'e710a836def9d5e9061e60a0682f3276bdd97e9db373e3e4f36c478ba3949a79'
-            '67354cea70c02dadb9a1ee04e9a0cb6df99ddbf1669c2cdd36bc94e4adc21cd7'
-            '7a57916dbba599c5aa60303a9db5233e5699b3be99dee3c1a052d576207e82c6'
-            '66e78ec6e9ea0152ba8862d49afd74bf9cd64bd6aa3ef8173b851c122a241f45'
-            'f76965f4729c5b707862c4c352e3603d719872a5add5f7bd822ede878404e938'
-            'a416e6205faf215345c6b121dc05a72f76b5c028e20085159e2c80132183d78d'
-            '57b07ceec2ede616d9c3450d3d83e93177c9f2e5c40418b0f9c22cd3f1d3ed8b'
-            '4e109566f74aadf8d9c91d4dcb73df2aab42246b0494a2597e2641a139e27c1a'
-            '585f10bb1b15e9a57d71b3da9cd969ca683f0fb81321ee8cc24371fad33fe247'
+sha256sums=('e1e0ca355fad4a95785d966b94c9374227ad1e4badee212298647a093288951e'
+            'd46d58816f3713f5468a3f120c7613a23aa66d47a1b0c38c441f856056d7c993'
             '6044d672a896200fbd319795bfd40a1c012e4ef6cf0dafeeae7e1d021d92d96f')
 
 prepare() {

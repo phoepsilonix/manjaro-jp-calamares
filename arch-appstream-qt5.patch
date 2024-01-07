@@ -14,13 +14,11 @@ index 1f517fd33..024f99d7d 100644
          PROPERTIES
          DESCRIPTION "Support for AppStream (cache) data"
          URL "https://github.com/ximion/appstream"
-@@ -44,8 +44,8 @@ if(WITH_APPSTREAM)
-         TYPE OPTIONAL
+@@ -45,7 +45,7 @@ if(WITH_APPSTREAM)
      )
      if(AppStreamQt_FOUND)
--        add_definitions(-DHAVE_APPSTREAM_VERSION=${AppStreamQt_VERSION_MAJOR})
+         add_definitions(-DHAVE_APPSTREAM)
 -        list(APPEND _extra_libraries AppStreamQt)
-+        add_definitions(-DHAVE_APPSTREAM_VERSION=${AppStreamQt5_VERSION_MAJOR})
 +        list(APPEND _extra_libraries AppStreamQt5)
          list(APPEND _extra_src ItemAppStream.cpp)
      endif()
@@ -71,13 +69,11 @@ index b0b1f738d..133252ec5 100644
          PROPERTIES
          DESCRIPTION "Support for AppStream (cache) data"
          URL "https://github.com/ximion/appstream"
-@@ -55,8 +55,8 @@ if(WITH_APPSTREAM)
-         TYPE OPTIONAL
+@@ -56,7 +56,7 @@ if(WITH_APPSTREAM)
      )
      if(AppStreamQt_FOUND)
--        add_definitions(-DHAVE_APPSTREAM_VERSION=${AppStreamQt_VERSION_MAJOR})
+         add_definitions(-DHAVE_APPSTREAM)
 -        list(APPEND _extra_libraries AppStreamQt)
-+        add_definitions(-DHAVE_APPSTREAM_VERSION=${AppStreamQt5_VERSION_MAJOR})
 +        list(APPEND _extra_libraries AppStreamQt5)
          list(APPEND _extra_src ${_packagechooser}/ItemAppStream.cpp)
      endif()
