@@ -1,38 +1,36 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 
 pkgname=calamares
-pkgver=3.2.62
-_pkgver=3.2.62
-pkgrel=18
-_commit=95e8c914680737e1fe71d121a978fff749de7b3a
+pkgver=3.3.1
+_pkgver=3.3.1
+pkgrel=0
+_commit=b8047384aa6b819f20795d271ea67b6eef608600
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=('GPL-3.0-or-later')
 url="https://gitlab.manjaro.org/applications/calamares"
 depends=('kconfig5' 'kcoreaddons5' 'kiconthemes5' 'ki18n5' 'kio5' 'solid5' 'yaml-cpp' 'kpmcore>=22.04.0' 'mkinitcpio-openswap'
-         'boost-libs' 'ckbcomp' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gtk-update-icon-cache' 'plasma-framework5'
-         'qt5-xmlpatterns' 'squashfs-tools' 'libpwquality' 'appstream-qt5' 'icu' 'python' 'qt5-webview'
-         'ttf-comfortaa')
-makedepends=('extra-cmake-modules' 'qt5-tools' 'qt5-translations' 'git' 'boost' 'kparts5' 'kdbusaddons5')
+         'ckbcomp' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gtk-update-icon-cache' 'plasma-framework5'
+         'qt5-xmlpatterns' 'squashfs-tools' 'libpwquality' 'appstream-qt5' 'icu' 'python' 'qt5-webview')
+makedepends=('extra-cmake-modules' 'qt5-tools' 'qt5-translations' 'git' 'kparts5' 'kdbusaddons5'
+             'qt5-webengine')
+optdepends=('kparts5: for interactiveterminal module'
+            'plasma-framework5: for plasmalnf module'
+            'qt5-webengine: for webview module')
 backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/displaymanager.conf'
         'usr/share/calamares/modules/initcpio.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
-source+=("$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
-         'arch-appstream-qt5.patch'
-         '2246-v32.patch'
-         #"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
+source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
+         "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
         )
-sha256sums=('e1e0ca355fad4a95785d966b94c9374227ad1e4badee212298647a093288951e'
-            'd46d58816f3713f5468a3f120c7613a23aa66d47a1b0c38c441f856056d7c993'
-            '6044d672a896200fbd319795bfd40a1c012e4ef6cf0dafeeae7e1d021d92d96f')
+sha256sums=('40569ea9b592ebeace013b5488cb16209312aa6f3982488706eb3848743ac42a')
 
 prepare() {
-	#mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
-	mv ${srcdir}/calamares-v${pkgver} ${srcdir}/calamares-${pkgver}
+	mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
+	#mv ${srcdir}/calamares-v${pkgver} ${srcdir}/calamares-${pkgver}
 	cd ${srcdir}/calamares-${pkgver}
-	sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' CMakeLists.txt
 	
 	# change version
 	sed -i -e "s|$pkgver|$_pkgver|g" CMakeLists.txt
@@ -67,7 +65,7 @@ build() {
               -DCMAKE_INSTALL_PREFIX=/usr \
               -DCMAKE_INSTALL_LIBDIR=lib \
               -DWITH_KF5DBus=OFF \
-              -DBoost_NO_BOOST_CMAKE=ON \
+              -DINSTALL_CONFIG=ON \
               -DSKIP_MODULES="initramfs initramfscfg \
                               dummyprocess dummypython \
                               dummycpp dummypythonqt \
