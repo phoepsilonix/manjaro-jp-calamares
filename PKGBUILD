@@ -7,9 +7,8 @@ pkgrel=18
 _commit=95e8c914680737e1fe71d121a978fff749de7b3a
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
-license=(GPL)
-url="https://gitlab.manjaro.org/applications/calamares"
 license=('GPL-3.0-or-later')
+url="https://gitlab.manjaro.org/applications/calamares"
 depends=('kconfig5' 'kcoreaddons5' 'kiconthemes5' 'ki18n5' 'kio5' 'solid5' 'yaml-cpp' 'kpmcore>=22.04.0' 'mkinitcpio-openswap'
          'boost-libs' 'ckbcomp' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gtk-update-icon-cache' 'plasma-framework5'
          'qt5-xmlpatterns' 'squashfs-tools' 'libpwquality' 'appstream-qt5' 'icu' 'python' 'qt5-webview'
