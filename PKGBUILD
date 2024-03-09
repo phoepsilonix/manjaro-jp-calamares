@@ -1,22 +1,18 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 
 pkgname=calamares
-pkgver=3.3.2
-_pkgver=3.3.2
-pkgrel=0
-_commit=43eb5c0d4afba55b2b730ad0f8a14a01215e8c9c
+pkgver=3.3.4
+_pkgver=3.3.4
+pkgrel=0.1
+_commit=9e82eeafc13352494bbd69bf8c83bf32fe0c03df
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=('BSD-2-Clause AND CC0-1.0 AND CC-BY-4.0 AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-3.0-or-later AND MIT')
 url="https://gitlab.manjaro.org/applications/calamares"
-depends=('kconfig5' 'kcoreaddons5' 'kiconthemes5' 'ki18n5' 'kio5' 'solid5' 'yaml-cpp' 'kpmcore>=22.04.0' 'mkinitcpio-openswap'
-         'ckbcomp' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gtk-update-icon-cache' 'plasma-framework5'
-         'qt5-xmlpatterns' 'squashfs-tools' 'libpwquality' 'appstream-qt5' 'icu' 'python' 'qt5-webview')
-makedepends=('extra-cmake-modules' 'qt5-tools' 'qt5-translations' 'git' 'kparts5' 'kdbusaddons5'
-             'qt5-webengine')
-optdepends=('kparts5: for interactiveterminal module'
-            'plasma-framework5: for plasmalnf module'
-            'qt5-webengine: for webview module')
+depends=('kconfig' 'kcoreaddons' 'kiconthemes' 'ki18n' 'solid' 'yaml-cpp' 'kpmcore'
+	'boost-libs' 'ckbcomp' 'hwinfo' 'qt6-svg' 'polkit-qt6'
+	'squashfs-tools' 'libpwquality' 'python')
+makedepends=('extra-cmake-modules' 'qt6-tools' 'qt6-translations' 'git' 'boost')
 backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/displaymanager.conf'
         'usr/share/calamares/modules/initcpio.conf'
@@ -25,7 +21,7 @@ backup=('usr/share/calamares/modules/bootloader.conf'
 source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
          "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
         )
-sha256sums=('f3f5201124b04a88a57aa40fda3bcdc682c9cd40f057a0ad7895fc79fa444797')
+sha256sums=('f1105171d298e7c505d0fabd57399e9029e5d812a68b6b8994c8d54d33c86740')
 
 prepare() {
 	mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
@@ -64,7 +60,7 @@ build() {
               -DCMAKE_BUILD_TYPE=Debug \
               -DCMAKE_INSTALL_PREFIX=/usr \
               -DCMAKE_INSTALL_LIBDIR=lib \
-              -DWITH_KF5DBus=OFF \
+              -DWITH_QT6=ON \
               -DINSTALL_CONFIG=ON \
               -DSKIP_MODULES="initramfs initramfscfg \
                               dummyprocess dummypython \
