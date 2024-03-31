@@ -3,11 +3,11 @@
 pkgname=calamares
 pkgver=3.2.62
 _pkgver=3.2.62
-pkgrel=18
+pkgrel=20
 _commit=95e8c914680737e1fe71d121a978fff749de7b3a
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
-license=(GPL)
+license=('BSD-2-Clause AND CC0-1.0 AND CC-BY-4.0 AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-3.0-or-later AND MIT')
 url="https://gitlab.manjaro.org/applications/calamares"
 license=('LGPL')
 depends=('kconfig5' 'kcoreaddons5' 'kiconthemes5' 'ki18n5' 'kio5' 'solid5' 'yaml-cpp' 'kpmcore>=22.04.0' 'mkinitcpio-openswap'
