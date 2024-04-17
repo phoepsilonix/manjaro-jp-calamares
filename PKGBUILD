@@ -1,16 +1,18 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 
-pkgname=calamares
+pkgname=calamares5
 pkgver=3.2.62
 _pkgver=3.2.62
-pkgrel=20
-_commit=95e8c914680737e1fe71d121a978fff749de7b3a
+pkgrel=2
+_commit=99d906118d1a567bb18a503a08bfda8c4664320d
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=('BSD-2-Clause AND CC0-1.0 AND CC-BY-4.0 AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-3.0-or-later AND MIT')
 url="https://gitlab.manjaro.org/applications/calamares"
 license=('LGPL')
-depends=('kconfig5' 'kcoreaddons5' 'kiconthemes5' 'ki18n5' 'kio5' 'solid5' 'yaml-cpp' 'kpmcore>=22.04.0' 'mkinitcpio-openswap'
+conflicts=('calamares')
+provides=("calamares=$pkgver")
+depends=('kconfig5' 'kcoreaddons5' 'kiconthemes5' 'ki18n5' 'kio5' 'solid5' 'yaml-cpp' 'kpmcore5>=23.05.0' 'mkinitcpio-openswap'
          'boost-libs' 'ckbcomp' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gtk-update-icon-cache' 'plasma-framework5'
          'qt5-xmlpatterns' 'squashfs-tools' 'libpwquality' 'appstream-qt5' 'icu' 'python' 'qt5-webview'
          'ttf-comfortaa')
@@ -20,18 +22,18 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/initcpio.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
-source+=("$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
+source+=(#"calamares-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
          'arch-appstream-qt5.patch'
          '2246-v32.patch'
-         #"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
+         "calamares-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/calamares-$_commit.tar.gz"
         )
-sha256sums=('e1e0ca355fad4a95785d966b94c9374227ad1e4badee212298647a093288951e'
-            'd46d58816f3713f5468a3f120c7613a23aa66d47a1b0c38c441f856056d7c993'
-            '6044d672a896200fbd319795bfd40a1c012e4ef6cf0dafeeae7e1d021d92d96f')
+sha256sums=('d46d58816f3713f5468a3f120c7613a23aa66d47a1b0c38c441f856056d7c993'
+            '6044d672a896200fbd319795bfd40a1c012e4ef6cf0dafeeae7e1d021d92d96f'
+            'b3e8be6f4eb6e8eb9fad895d90dbadd3656462604bffa4c8154e43d3ffbb8eb9')
 
 prepare() {
-	#mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
-	mv ${srcdir}/calamares-v${pkgver} ${srcdir}/calamares-${pkgver}
+	mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
+	#mv ${srcdir}/calamares-v${pkgver} ${srcdir}/calamares-${pkgver}
 	cd ${srcdir}/calamares-${pkgver}
 	sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' CMakeLists.txt
 	
