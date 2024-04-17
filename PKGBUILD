@@ -4,7 +4,7 @@ pkgname=calamares5
 pkgver=3.2.62
 _pkgver=3.2.62
 pkgrel=2
-_commit=99d906118d1a567bb18a503a08bfda8c4664320d
+_commit=a397989c9aa6c0f8b9c28a481e70e9501a900beb
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=('BSD-2-Clause AND CC0-1.0 AND CC-BY-4.0 AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-3.0-or-later AND MIT')
@@ -29,7 +29,7 @@ source+=(#"calamares-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.
         )
 sha256sums=('d46d58816f3713f5468a3f120c7613a23aa66d47a1b0c38c441f856056d7c993'
             '6044d672a896200fbd319795bfd40a1c012e4ef6cf0dafeeae7e1d021d92d96f'
-            'b3e8be6f4eb6e8eb9fad895d90dbadd3656462604bffa4c8154e43d3ffbb8eb9')
+            '6f447ccf3cb04fd7ed18bc26c482a008c1caed64a83e6c519e12843a4bc2933b')
 
 prepare() {
 	mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
