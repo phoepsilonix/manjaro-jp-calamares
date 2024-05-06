@@ -3,7 +3,7 @@
 pkgname=calamares
 pkgver=3.3.6
 _pkgver=3.3.6
-pkgrel=2
+pkgrel=3
 _commit=41451c95008da0aba28b4dd7b492eb18c2c53004
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
@@ -11,7 +11,7 @@ license=('BSD-2-Clause AND CC0-1.0 AND CC-BY-4.0 AND GPL-3.0-or-later AND LGPL-2
 url="https://gitlab.manjaro.org/applications/calamares"
 depends=('kconfig' 'kcoreaddons' 'kiconthemes' 'ki18n' 'solid' 'yaml-cpp' 'kpmcore'
 	'boost-libs' 'ckbcomp' 'hwinfo' 'qt6-svg' 'polkit-qt6'
-	'squashfs-tools' 'libpwquality' 'python')
+	'squashfs-tools' 'libpwquality' 'python' 'python-setuptools')
 makedepends=('extra-cmake-modules' 'qt6-tools' 'qt6-translations' 'git' 'boost')
 backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/displaymanager.conf'
