@@ -3,7 +3,7 @@
 pkgname=calamares5
 pkgver=3.2.62
 _pkgver=3.2.62
-pkgrel=2
+pkgrel=3
 _commit=a397989c9aa6c0f8b9c28a481e70e9501a900beb
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
@@ -15,7 +15,7 @@ provides=("calamares=$pkgver")
 depends=('kconfig5' 'kcoreaddons5' 'kiconthemes5' 'ki18n5' 'kio5' 'solid5' 'yaml-cpp' 'kpmcore5>=23.05.0' 'mkinitcpio-openswap'
          'boost-libs' 'ckbcomp' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gtk-update-icon-cache' 'plasma-framework5'
          'qt5-xmlpatterns' 'squashfs-tools' 'libpwquality' 'appstream-qt5' 'icu' 'python' 'qt5-webview'
-         'ttf-comfortaa')
+         'ttf-comfortaa' 'python-setuptools')
 makedepends=('extra-cmake-modules' 'qt5-tools' 'qt5-translations' 'git' 'boost' 'kparts5' 'kdbusaddons5')
 backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/displaymanager.conf'
