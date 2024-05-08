@@ -3,8 +3,8 @@
 pkgname=calamares5
 pkgver=3.2.62
 _pkgver=3.2.62
-pkgrel=4
-_commit=a397989c9aa6c0f8b9c28a481e70e9501a900beb
+pkgrel=5
+_commit=f932fac76c211566f495c82b1468fd7a12eb80f3
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=('BSD-2-Clause AND CC0-1.0 AND CC-BY-4.0 AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-3.0-or-later AND MIT')
@@ -15,7 +15,7 @@ provides=("calamares=$pkgver")
 depends=('kconfig5' 'kcoreaddons5' 'kiconthemes5' 'ki18n5' 'kio5' 'solid5' 'yaml-cpp' 'kpmcore5>=23.05.0' 'mkinitcpio-openswap'
          'boost-libs' 'ckbcomp' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gtk-update-icon-cache' 'plasma-framework5'
          'qt5-xmlpatterns' 'squashfs-tools' 'libpwquality' 'appstream-qt5' 'icu' 'python' 'qt5-webview'
-         'ttf-comfortaa' 'python-setuptools')
+         'ttf-comfortaa')
 makedepends=('extra-cmake-modules' 'qt5-tools' 'qt5-translations' 'git' 'boost' 'kparts5' 'kdbusaddons5')
 backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/displaymanager.conf'
@@ -29,7 +29,7 @@ source+=(#"calamares-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.
         )
 sha256sums=('d46d58816f3713f5468a3f120c7613a23aa66d47a1b0c38c441f856056d7c993'
             '6044d672a896200fbd319795bfd40a1c012e4ef6cf0dafeeae7e1d021d92d96f'
-            '6f447ccf3cb04fd7ed18bc26c482a008c1caed64a83e6c519e12843a4bc2933b')
+            'd1f235b89d1c7ec7c6db7200628350026dfa0e3e2b3be094b6466776ecf074e4')
 
 prepare() {
 	mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
