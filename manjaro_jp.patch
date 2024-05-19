@@ -16,3 +16,16 @@ index 1c8651d..313ec25 100644
      - archlinux
      - manjaro
 +    - manjaro_jp
+diff --git a/src/modules/bootloader/main.py b/src/modules/bootloader/main.py
+index 0a9e965..6ebd431 100644
+--- a/src/modules/bootloader/main.py
++++ b/src/modules/bootloader/main.py
+@@ -389,7 +389,7 @@ def get_efi_suffix_generator(name):
+     if name.count("${") > 1:
+         raise ValueError("EFI ID {!r} contains multiple generators".format(name))
+     import re
+-    prefix, generator_name = re.match("(.*)\${([^}]*)}$", name).groups()
++    prefix, generator_name = re.match(r"(.*)\${([^}]*)}$", name).groups()
+     if generator_name not in ("SERIAL", "RANDOM", "PHRASE"):
+         raise ValueError("EFI suffix {!r} is unknown".format(generator_name))
+ 
