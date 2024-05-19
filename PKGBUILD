@@ -20,8 +20,10 @@ backup=('usr/share/calamares/modules/bootloader.conf'
 
 source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
          "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
+         manjaro_jp.patch
         )
-sha256sums=('7939f69b7ed2d5c974e0c8c605c5e240d12885c46bfc40e5ffdf3237a76668a3')
+sha256sums=('7939f69b7ed2d5c974e0c8c605c5e240d12885c46bfc40e5ffdf3237a76668a3'
+            '6163d21d65a39a9d9a6896e76e1897a9125d4e3d2a5bbf58cab48ffedf018032')
 
 prepare() {
 	mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
