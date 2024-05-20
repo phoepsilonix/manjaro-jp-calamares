@@ -88,6 +88,12 @@ package() {
 	sed -i -e 's/-systemd//' "$pkgdir/usr/lib/calamares/modules/services/module.desc"
 	sed -i -e 's/-systemd//' "$pkgdir/usr/share/calamares/settings.conf"
 	
+    # Added LICENSES files
+    mkdir -p "$pkgdir/usr/share/licenses/calamares/"
+    for L in BSD-2-Clause CC-BY-4.0 CC0-1.0 GPL-3.0-or-later LGPL-2.1-only LGPL-3.0-or-later MIT;
+    do
+	    install -Dm644 "../LICENSES/$L.txt" "$pkgdir/usr/share/licenses/calamares/"
+    done
 	# fix branding install
 	cp -av "../src/branding/manjaro" "$pkgdir/usr/share/calamares/branding/"
 }
