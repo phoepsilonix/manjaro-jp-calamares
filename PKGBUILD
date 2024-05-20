@@ -25,7 +25,7 @@ source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.t
         )
 sha256sums=('7939f69b7ed2d5c974e0c8c605c5e240d12885c46bfc40e5ffdf3237a76668a3'
             '07d50f31081f58fcfaf174b51411789c3a6f93b34ef07aefcb15a2614e3fc980'
-            '3604f127a65d7d511d2742bd0d3f33b8378fe7423927a739f7dd4464fb2b942a')
+            '9658c894ee4efc14b213ace5db67a05697c3fb680c36d0ef605162fff54ffbae')
 
 prepare() {
 	mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}

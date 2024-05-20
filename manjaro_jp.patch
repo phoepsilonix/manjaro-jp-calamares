@@ -29,3 +29,29 @@ index 0a9e965..6ebd431 100644
      if generator_name not in ("SERIAL", "RANDOM", "PHRASE"):
          raise ValueError("EFI suffix {!r} is unknown".format(generator_name))
  
+diff --git a/src/modules/chrootcfg/main.py b/src/modules/chrootcfg/main.py
+index d9f76d5..32a227a 100644
+--- a/src/modules/chrootcfg/main.py
++++ b/src/modules/chrootcfg/main.py
+@@ -118,7 +118,7 @@ class PacmanController:
+         target_env_call(["pacman-key", "--init"])
+ 
+     def populate_keyring(self):
+-        target_env_call(["pacman-key", "--populate"] + self.keyrings)
++        target_env_call(["pacman-key", "--populate"])
+ 
+     def parse_output(self, cmd):
+         cal_env = os.environ
+diff --git a/src/modules/postcfg/main.py b/src/modules/postcfg/main.py
+index 5589add..a0d1677 100644
+--- a/src/modules/postcfg/main.py
++++ b/src/modules/postcfg/main.py
+@@ -45,7 +45,7 @@ class ConfigController:
+         target_env_call(["pacman-key", "--init"])
+ 
+     def populate_keyring(self):
+-        target_env_call(["pacman-key", "--populate"] + self.keyrings)
++        target_env_call(["pacman-key", "--populate"])
+ 
+     def terminate(self, proc):
+         target_env_call(['killall', '-9', proc])
