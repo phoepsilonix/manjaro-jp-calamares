@@ -3,7 +3,7 @@
 pkgname=calamares
 pkgver=3.3.6
 _pkgver=3.3.6
-pkgrel=7
+pkgrel=10
 _commit=97f960f5dc9ba587deff201160679e116505c05b
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
@@ -26,6 +26,7 @@ source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.t
 sha256sums=('7939f69b7ed2d5c974e0c8c605c5e240d12885c46bfc40e5ffdf3237a76668a3'
             '07d50f31081f58fcfaf174b51411789c3a6f93b34ef07aefcb15a2614e3fc980'
             '9658c894ee4efc14b213ace5db67a05697c3fb680c36d0ef605162fff54ffbae')
+options=('!lto')
 
 prepare() {
 	mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
