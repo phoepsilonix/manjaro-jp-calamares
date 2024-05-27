@@ -3,7 +3,7 @@
 pkgname=calamares5
 pkgver=3.2.62
 _pkgver=3.2.62
-pkgrel=7
+pkgrel=8
 _commit=6a667e4157a2107c7078c58a32e14079ded24a3c
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
@@ -25,10 +25,14 @@ backup=('usr/share/calamares/modules/bootloader.conf'
 source+=(#"calamares-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
          'arch-appstream-qt5.patch'
          '2246-v32.patch'
+         001-no-oom.patch
+         manjaro_jp.patch
          "calamares-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/calamares-$_commit.tar.gz"
         )
 sha256sums=('d46d58816f3713f5468a3f120c7613a23aa66d47a1b0c38c441f856056d7c993'
             '6044d672a896200fbd319795bfd40a1c012e4ef6cf0dafeeae7e1d021d92d96f'
+            '728df612f29bfb88277880a4946931fd7aed989919c32a443155ff4ce1c67dc9'
+            '2b3f651f938816babc653bd4882c0590ba6e88a8c9b6164b54d5db95275ded4a'
             'a6bbab39ac9f6b791d9f10c40a34d46925b2078bbf9ec2f7f249e6c8d9f93998')
 
 prepare() {
@@ -93,6 +97,12 @@ package() {
 	sed -i -e 's/-systemd//' "$pkgdir/usr/lib/calamares/modules/services/module.desc"
 	sed -i -e 's/-systemd//' "$pkgdir/usr/share/calamares/settings.conf"
 	
+    # Added LICENSES files
+    mkdir -p "$pkgdir/usr/share/licenses/calamares/"
+    for L in BSD-2-Clause CC-BY-4.0 CC0-1.0 GPL-3.0-or-later LGPL-2.1-only LGPL-3.0-or-later MIT;
+    do
+	    install -Dm644 "../LICENSES/$L.txt" "$pkgdir/usr/share/licenses/calamares/"
+    done
 	# fix branding install
 	cp -av "../src/branding/manjaro" "$pkgdir/usr/share/calamares/branding/"
 }
