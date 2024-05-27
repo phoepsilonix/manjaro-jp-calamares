@@ -12,10 +12,37 @@ url="https://gitlab.manjaro.org/applications/calamares"
 license=('LGPL')
 conflicts=('calamares')
 provides=("calamares=$pkgver")
-depends=('kconfig5' 'kcoreaddons5' 'kiconthemes5' 'ki18n5' 'kio5' 'solid5' 'yaml-cpp' 'kpmcore5>=23.05.0' 'mkinitcpio-openswap'
+depends=('kconfig5' 'kcoreaddons5' 'ki18n5' 'kio5' 'solid5' 'yaml-cpp' 'kpmcore5>=23.05.0' 'mkinitcpio-openswap'
          'boost-libs' 'ckbcomp' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gtk-update-icon-cache' 'plasma-framework5'
          'qt5-xmlpatterns' 'squashfs-tools' 'libpwquality' 'appstream-qt5' 'icu' 'python' 'qt5-webview'
-         'ttf-comfortaa')
+         'ttf-comfortaa'
+kauth5
+kwidgetsaddons5
+kjobwidgets5
+qt5-base
+qt5-webengine
+libx11
+qt5-webchannel
+parted
+gcc-libs
+qt5-declarative
+qt5-location
+kconfigwidgets5
+hicolor-icon-theme
+libxcrypt
+kcompletion5
+kxmlgui5
+sonnet5
+kpackage5
+kwindowsystem5
+bash
+kservice5
+ktextwidgets5
+kcodecs5
+glibc
+kcrash5
+         )
+
 makedepends=('extra-cmake-modules' 'qt5-tools' 'qt5-translations' 'git' 'boost' 'kparts5' 'kdbusaddons5')
 backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/displaymanager.conf'
