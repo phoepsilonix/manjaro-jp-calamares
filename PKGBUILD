@@ -3,7 +3,7 @@
 pkgname=calamares
 pkgver=3.3.6
 _pkgver=3.3.6
-pkgrel=10
+pkgrel=11
 _commit=97f960f5dc9ba587deff201160679e116505c05b
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
@@ -67,6 +67,7 @@ build() {
               -DCMAKE_INSTALL_LIBDIR=lib \
               -DWITH_QT6=ON \
               -DINSTALL_CONFIG=ON \
+              -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS" \
               -DSKIP_MODULES="initramfs initramfscfg \
                               dummyprocess dummypython \
                               dummycpp dummypythonqt \
