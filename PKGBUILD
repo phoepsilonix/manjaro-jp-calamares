@@ -60,7 +60,7 @@ source+=(#"calamares-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.
 sha256sums=('d46d58816f3713f5468a3f120c7613a23aa66d47a1b0c38c441f856056d7c993'
             '6044d672a896200fbd319795bfd40a1c012e4ef6cf0dafeeae7e1d021d92d96f'
             '07d50f31081f58fcfaf174b51411789c3a6f93b34ef07aefcb15a2614e3fc980'
-            '2b3f651f938816babc653bd4882c0590ba6e88a8c9b6164b54d5db95275ded4a'
+            '53027b2c2a1d5a4180cc50c144787097e2a886c1820b631109b403b4debd1369'
             'a6bbab39ac9f6b791d9f10c40a34d46925b2078bbf9ec2f7f249e6c8d9f93998')
 
 prepare() {
@@ -103,7 +103,7 @@ build() {
               -DCMAKE_INSTALL_LIBDIR=lib \
               -DWITH_KF5DBus=OFF \
               -DBoost_NO_BOOST_CMAKE=ON \
-              -DCMAKE_SHARED_LINKER_FLAGS="-Wl,--no-undefined -Wl,--fatal-warnings -Wl,--sort-common,--as-needed,-z,relro $LDFLAGS" \
+              -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS" \
               -DSKIP_MODULES="initramfs initramfscfg \
                               dummyprocess dummypython \
                               dummycpp dummypythonqt \
