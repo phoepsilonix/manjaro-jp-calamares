@@ -103,7 +103,7 @@ build() {
               -DCMAKE_INSTALL_LIBDIR=lib \
               -DWITH_KF5DBus=OFF \
               -DBoost_NO_BOOST_CMAKE=ON \
-              -DCMAKE_SHARED_LINKER_FLAGS="-Wl,--no-undefined -Wl,--fatal-warnings $LDFLAGS" \
+              -DCMAKE_SHARED_LINKER_FLAGS="-Wl,--no-undefined -Wl,--fatal-warnings -Wl,--sort-common,--as-needed,-z,relro $LDFLAGS" \
               -DSKIP_MODULES="initramfs initramfscfg \
                               dummyprocess dummypython \
                               dummycpp dummypythonqt \
@@ -128,10 +128,10 @@ package() {
 	sed -i -e 's/-systemd//' "$pkgdir/usr/share/calamares/settings.conf"
 	
     # Added LICENSES files
-    mkdir -p "$pkgdir/usr/share/licenses/calamares/"
+    mkdir -p "$pkgdir/usr/share/licenses/calamares5/"
     for L in BSD-2-Clause CC-BY-4.0 CC0-1.0 GPL-3.0-or-later LGPL-2.1-only LGPL-3.0-or-later MIT;
     do
-	    install -Dm644 "../LICENSES/$L.txt" "$pkgdir/usr/share/licenses/calamares/$L"
+	    install -Dm644 "../LICENSES/$L.txt" "$pkgdir/usr/share/licenses/calamares5/$L"
     done
 	# fix branding install
 	cp -av "../src/branding/manjaro" "$pkgdir/usr/share/calamares/branding/"
