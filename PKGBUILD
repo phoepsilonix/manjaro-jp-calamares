@@ -72,12 +72,12 @@ build() {
                               dummyprocess dummypython \
                               dummycpp dummypythonqt \
                               services-openrc"
-        make
+        cmake --build .
 }
 
 package() {
 	cd ${srcdir}/calamares-${pkgver}/build
-	make DESTDIR="$pkgdir" install
+	DESTDIR="$pkgdir" cmake --install .
 	install -Dm644 "../data/manjaro-icon.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/calamares.svg"
 	install -Dm644 "../data/calamares.desktop" "$pkgdir/usr/share/applications/calamares.desktop"
 	install -Dm755 "../data/calamares_polkit" "$pkgdir/usr/bin/calamares_polkit"
