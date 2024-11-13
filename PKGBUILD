@@ -1,9 +1,9 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 
 pkgname=calamares
-pkgver=3.3.9
-_pkgver=3.3.9
-pkgrel=4
+pkgver=3.3.11
+_pkgver=3.3.11
+pkgrel=1
 _commit=8963c28e8add1d37b76189772d8a8d8132ab57c8
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
@@ -23,7 +23,7 @@ source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.t
          001-no-oom.patch
          manjaro_jp.patch
         )
-sha256sums=('b955d0acaf6f076b1417abea871359a7575d4d3c456dd695c74971167ba9c60c'
+sha256sums=('5d74883b1f8957504e240aa3aaf2d34adffc62b73bac4b851d92a8d79b1c7d35'
             '57d905dd62e320938b3288f8713762b7acca68deb6b35be4916bc7031a706f1a'
             '9658c894ee4efc14b213ace5db67a05697c3fb680c36d0ef605162fff54ffbae')
 options=('!lto')
