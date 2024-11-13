@@ -4,7 +4,7 @@ pkgname=calamares
 pkgver=3.3.11
 _pkgver=3.3.11
 pkgrel=1
-_commit=8963c28e8add1d37b76189772d8a8d8132ab57c8
+_commit=870b137bfc98ee61248fe1cf1caaa7db256ece32
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=('BSD-2-Clause AND CC0-1.0 AND CC-BY-4.0 AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-3.0-or-later AND MIT')
@@ -23,7 +23,7 @@ source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.t
          001-no-oom.patch
          manjaro_jp.patch
         )
-sha256sums=('5d74883b1f8957504e240aa3aaf2d34adffc62b73bac4b851d92a8d79b1c7d35'
+sha256sums=('c3d01f9950332ac2d138fae0956b9731cc99eddf41892f40bd725a8e36e2566e'
             '57d905dd62e320938b3288f8713762b7acca68deb6b35be4916bc7031a706f1a'
             '9658c894ee4efc14b213ace5db67a05697c3fb680c36d0ef605162fff54ffbae')
 options=('!lto')
