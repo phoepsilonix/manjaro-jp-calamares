@@ -1,10 +1,10 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 
 pkgname=calamares
-pkgver=3.3.11
-_pkgver=3.3.11
+pkgver=3.3.12
+_pkgver=3.3.12
 pkgrel=1
-_commit=a0e4323063ee76c0d8a4b44c78017ef59f8cf7ce
+_commit=363c02faba3e616f807832df7365c9e27fbc3fbb
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=('BSD-2-Clause AND CC0-1.0 AND CC-BY-4.0 AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-3.0-or-later AND MIT')
@@ -21,7 +21,7 @@ backup=('usr/share/calamares/modules/bootloader.conf'
 source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
          "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
         )
-sha256sums=('5d74883b1f8957504e240aa3aaf2d34adffc62b73bac4b851d92a8d79b1c7d35')
+sha256sums=('d4359b795477e204c6bee45fba05f6aeca26b291a94175f7167071f75fe89ecb')
 
 prepare() {
 	mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
