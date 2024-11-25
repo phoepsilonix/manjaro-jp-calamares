@@ -22,11 +22,13 @@ source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.t
          "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
          001-no-oom.patch
          manjaro_jp.patch
+         https://github.com/calamares/calamares/pull/2398.patch
         )
 
 sha256sums=('d4359b795477e204c6bee45fba05f6aeca26b291a94175f7167071f75fe89ecb'
             '57d905dd62e320938b3288f8713762b7acca68deb6b35be4916bc7031a706f1a'
-            '9658c894ee4efc14b213ace5db67a05697c3fb680c36d0ef605162fff54ffbae')
+            '9658c894ee4efc14b213ace5db67a05697c3fb680c36d0ef605162fff54ffbae'
+            'b9d86c267fb53e1d72e6dd0758f0b5c7b4ef35047c071fdc052f722fc862b357')
 options=('!lto')
 
 prepare() {
