@@ -24,7 +24,7 @@ source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.t
          manjaro_jp.patch
         )
 
-sha256sums=('c3d01f9950332ac2d138fae0956b9731cc99eddf41892f40bd725a8e36e2566e'
+sha256sums=('d4359b795477e204c6bee45fba05f6aeca26b291a94175f7167071f75fe89ecb'
             '57d905dd62e320938b3288f8713762b7acca68deb6b35be4916bc7031a706f1a'
             '9658c894ee4efc14b213ace5db67a05697c3fb680c36d0ef605162fff54ffbae')
 options=('!lto')
