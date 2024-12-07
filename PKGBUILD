@@ -3,13 +3,14 @@
 pkgname=calamares
 pkgver=3.3.12
 _pkgver=3.3.12
-pkgrel=1
+pkgrel=5
 _commit=363c02faba3e616f807832df7365c9e27fbc3fbb
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=('BSD-2-Clause AND CC0-1.0 AND CC-BY-4.0 AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-3.0-or-later AND MIT')
 url="https://gitlab.manjaro.org/applications/calamares"
 depends=('kconfig' 'kcoreaddons' 'kiconthemes' 'ki18n' 'solid' 'yaml-cpp' 'kpmcore'
+    'kcrash'
 	'boost-libs' 'ckbcomp' 'hwinfo' 'qt6-svg' 'polkit-qt6'
 	'squashfs-tools' 'libpwquality' 'python')
 makedepends=('extra-cmake-modules' 'qt6-tools' 'qt6-translations' 'git' 'boost')
@@ -22,14 +23,17 @@ source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.t
          "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
          001-no-oom.patch
          manjaro_jp.patch
+         trying-fix-segv.patch
          https://github.com/calamares/calamares/pull/2398.patch
         )
 
 sha256sums=('d4359b795477e204c6bee45fba05f6aeca26b291a94175f7167071f75fe89ecb'
             '57d905dd62e320938b3288f8713762b7acca68deb6b35be4916bc7031a706f1a'
             '9658c894ee4efc14b213ace5db67a05697c3fb680c36d0ef605162fff54ffbae'
+            '7273a25895a9934cc7be11b96906531aa9388d9a66e8b5eb3c62e482d53704d3'
             'b9d86c267fb53e1d72e6dd0758f0b5c7b4ef35047c071fdc052f722fc862b357')
-options=('!lto')
+options=('!lto' '!strip' 'debug')
+#options=('!lto')
 
 prepare() {
 	mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
