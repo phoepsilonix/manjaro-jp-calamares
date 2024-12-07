@@ -1,5 +1,5 @@
 diff --git a/src/modules/partition/core/BootLoaderModel.cpp b/src/modules/partition/core/BootLoaderModel.cpp
-index 1e5e75f07..ab63e9e3b 100644
+index 1e5e75f07..a04d35037 100644
 --- a/src/modules/partition/core/BootLoaderModel.cpp
 +++ b/src/modules/partition/core/BootLoaderModel.cpp
 @@ -42,6 +42,7 @@ BootLoaderModel::~BootLoaderModel() {}
@@ -18,19 +18,7 @@ index 1e5e75f07..ab63e9e3b 100644
      beginResetModel();
      blockSignals( true );
      updateInternal();
-@@ -76,7 +78,10 @@ BootLoaderModel::update()
- void
- BootLoaderModel::updateInternal()
- {
--    QMutexLocker lock( &m_lock );
-+    // This method is only called from init() and update(), which both
-+    // already have mutex locking for thread safety. Therefore,
-+    // additional mutex locking here is unnecessary.
-+    // QMutexLocker lock( &m_lock_update );
-     clear();
-     createMbrItems();
- 
-@@ -136,6 +141,12 @@ QVariant
+@@ -136,6 +138,12 @@ QVariant
  BootLoaderModel::data( const QModelIndex& index, int role ) const
  {
      QMutexLocker lock( &m_lock );

@@ -3,7 +3,7 @@
 pkgname=calamares
 pkgver=3.3.12
 _pkgver=3.3.12
-pkgrel=9
+pkgrel=10
 _commit=363c02faba3e616f807832df7365c9e27fbc3fbb
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
@@ -30,7 +30,7 @@ source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.t
 sha256sums=('d4359b795477e204c6bee45fba05f6aeca26b291a94175f7167071f75fe89ecb'
             '57d905dd62e320938b3288f8713762b7acca68deb6b35be4916bc7031a706f1a'
             '9658c894ee4efc14b213ace5db67a05697c3fb680c36d0ef605162fff54ffbae'
-            'd2c637b7b66137539198f72a23fe01130318fb42ca4cf599348628207d0a1778'
+            'ccfb5dd95a3dbcbc89d8c0a5876db5369db6acde574c85cf492546b63952eab4'
             'b9d86c267fb53e1d72e6dd0758f0b5c7b4ef35047c071fdc052f722fc862b357')
 options=('!lto' '!strip' 'debug')
 #options=('!lto')
