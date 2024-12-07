@@ -1,3 +1,60 @@
+diff --git a/src/modules/partition/core/BootLoaderModel.cpp b/src/modules/partition/core/BootLoaderModel.cpp
+index 1e5e75f07..ab63e9e3b 100644
+--- a/src/modules/partition/core/BootLoaderModel.cpp
++++ b/src/modules/partition/core/BootLoaderModel.cpp
+@@ -42,6 +42,7 @@ BootLoaderModel::~BootLoaderModel() {}
+ void
+ BootLoaderModel::init( const QList< Device* >& devices )
+ {
++    QMutexLocker lock( &m_lock_update );
+     beginResetModel();
+     blockSignals( true );
+ 
+@@ -65,6 +66,7 @@ BootLoaderModel::createMbrItems()
+ void
+ BootLoaderModel::update()
+ {
++    QMutexLocker lock( &m_lock_update );
+     beginResetModel();
+     blockSignals( true );
+     updateInternal();
+@@ -76,7 +78,10 @@ BootLoaderModel::update()
+ void
+ BootLoaderModel::updateInternal()
+ {
+-    QMutexLocker lock( &m_lock );
++    // This method is only called from init() and update(), which both
++    // already have mutex locking for thread safety. Therefore,
++    // additional mutex locking here is unnecessary.
++    // QMutexLocker lock( &m_lock_update );
+     clear();
+     createMbrItems();
+ 
+@@ -136,6 +141,12 @@ QVariant
+ BootLoaderModel::data( const QModelIndex& index, int role ) const
+ {
+     QMutexLocker lock( &m_lock );
++
++    // インデックスの有効性を確認
++    if (!index.isValid()) {
++        return QVariant(); // 無効なインデックスの場合は空の QVariant を返す
++    }
++
+     if ( role == Qt::DisplayRole )
+     {
+         QString displayRole = QStandardItemModel::data( index, Qt::DisplayRole ).toString();
+diff --git a/src/modules/partition/core/BootLoaderModel.h b/src/modules/partition/core/BootLoaderModel.h
+index e640d4d7c..f82182c3d 100644
+--- a/src/modules/partition/core/BootLoaderModel.h
++++ b/src/modules/partition/core/BootLoaderModel.h
+@@ -58,6 +58,7 @@ public:
+ private:
+     DeviceList m_devices;
+     mutable QMutex m_lock;
++    mutable QMutex m_lock_update;
+ 
+     void createMbrItems();
+     void updateInternal();
 diff --git a/src/modules/partition/core/PartitionModel.cpp b/src/modules/partition/core/PartitionModel.cpp
 index a9d49dc37..561be6355 100644
 --- a/src/modules/partition/core/PartitionModel.cpp
