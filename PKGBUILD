@@ -3,7 +3,7 @@
 pkgname=calamares
 pkgver=3.3.12
 _pkgver=3.3.12
-pkgrel=5
+pkgrel=7
 _commit=363c02faba3e616f807832df7365c9e27fbc3fbb
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
@@ -30,7 +30,7 @@ source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.t
 sha256sums=('d4359b795477e204c6bee45fba05f6aeca26b291a94175f7167071f75fe89ecb'
             '57d905dd62e320938b3288f8713762b7acca68deb6b35be4916bc7031a706f1a'
             '9658c894ee4efc14b213ace5db67a05697c3fb680c36d0ef605162fff54ffbae'
-            '7273a25895a9934cc7be11b96906531aa9388d9a66e8b5eb3c62e482d53704d3'
+            '0261b3a75d97a6e34790928f5e6db298a67bd745ce503f1ff2c33aac528a7e56'
             'b9d86c267fb53e1d72e6dd0758f0b5c7b4ef35047c071fdc052f722fc862b357')
 options=('!lto' '!strip' 'debug')
 #options=('!lto')
@@ -66,6 +66,8 @@ prepare() {
 build() {
 	cd ${srcdir}/calamares-${pkgver}
 
+    export CFLAGS="$CFLAGS -O0"
+    export CXXFLAGS="$CXXFLAGS -O0"
 	mkdir -p build
 	cd build
         cmake .. \

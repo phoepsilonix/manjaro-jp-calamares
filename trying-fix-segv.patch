@@ -1,30 +1,20 @@
-diff --git a/src/calamares/main.cpp b/src/calamares/main.cpp
-index e0491e5f9..0723a09fb 100644
---- a/src/calamares/main.cpp
-+++ b/src/calamares/main.cpp
-@@ -100,7 +100,7 @@ handle_args( CalamaresApplication& a )
-     }
-     Calamares::setAllowLocalTranslation( parser.isSet( debugOption ) || parser.isSet( debugTxOption ) );
- 
--    return parser.isSet( debugOption );
-+    return ( parser.isSet( debugOption ) || parser.isSet( debugTxOption ) );
- }
- 
- int
-diff --git a/src/modules/partition/core/BootLoaderModel.cpp b/src/modules/partition/core/BootLoaderModel.cpp
-index 1e5e75f07..5dc094d01 100644
---- a/src/modules/partition/core/BootLoaderModel.cpp
-+++ b/src/modules/partition/core/BootLoaderModel.cpp
-@@ -136,6 +136,12 @@ QVariant
- BootLoaderModel::data( const QModelIndex& index, int role ) const
- {
-     QMutexLocker lock( &m_lock );
-+
-+    // インデックスの有効性を確認
-+    if (!index.isValid()) {
-+        return QVariant(); // 無効なインデックスの場合は空の QVariant を返す
-+    }
-+
-     if ( role == Qt::DisplayRole )
+diff --git a/src/modules/partition/core/PartitionModel.cpp b/src/modules/partition/core/PartitionModel.cpp
+index a9d49dc37..561be6355 100644
+--- a/src/modules/partition/core/PartitionModel.cpp
++++ b/src/modules/partition/core/PartitionModel.cpp
+@@ -115,9 +115,15 @@ PartitionModel::parent( const QModelIndex& child ) const
+     Partition* partition = partitionForIndex( child );
+     if ( !partition )
      {
-         QString displayRole = QStandardItemModel::data( index, Qt::DisplayRole ).toString();
++        cWarning() << "Partition is null for the given index.";
+         return QModelIndex();
+     }
+     PartitionNode* parentNode = partition->parent();
++    if ( !parentNode )
++    {
++        cWarning() << "Parent node is null!";
++        return QModelIndex();
++    }
+     if ( parentNode == m_device->partitionTable() )
+     {
+         return QModelIndex();
