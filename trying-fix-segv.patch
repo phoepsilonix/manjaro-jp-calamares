@@ -1,48 +1,3 @@
-diff --git a/src/modules/partition/core/BootLoaderModel.cpp b/src/modules/partition/core/BootLoaderModel.cpp
-index 1e5e75f07..a04d35037 100644
---- a/src/modules/partition/core/BootLoaderModel.cpp
-+++ b/src/modules/partition/core/BootLoaderModel.cpp
-@@ -42,6 +42,7 @@ BootLoaderModel::~BootLoaderModel() {}
- void
- BootLoaderModel::init( const QList< Device* >& devices )
- {
-+    QMutexLocker lock( &m_lock_update );
-     beginResetModel();
-     blockSignals( true );
- 
-@@ -65,6 +66,7 @@ BootLoaderModel::createMbrItems()
- void
- BootLoaderModel::update()
- {
-+    QMutexLocker lock( &m_lock_update );
-     beginResetModel();
-     blockSignals( true );
-     updateInternal();
-@@ -136,6 +138,12 @@ QVariant
- BootLoaderModel::data( const QModelIndex& index, int role ) const
- {
-     QMutexLocker lock( &m_lock );
-+
-+    // インデックスの有効性を確認
-+    if (!index.isValid()) {
-+        return QVariant(); // 無効なインデックスの場合は空の QVariant を返す
-+    }
-+
-     if ( role == Qt::DisplayRole )
-     {
-         QString displayRole = QStandardItemModel::data( index, Qt::DisplayRole ).toString();
-diff --git a/src/modules/partition/core/BootLoaderModel.h b/src/modules/partition/core/BootLoaderModel.h
-index e640d4d7c..f82182c3d 100644
---- a/src/modules/partition/core/BootLoaderModel.h
-+++ b/src/modules/partition/core/BootLoaderModel.h
-@@ -58,6 +58,7 @@ public:
- private:
-     DeviceList m_devices;
-     mutable QMutex m_lock;
-+    mutable QMutex m_lock_update;
- 
-     void createMbrItems();
-     void updateInternal();
 diff --git a/src/modules/partition/core/PartitionModel.cpp b/src/modules/partition/core/PartitionModel.cpp
 index a9d49dc37..561be6355 100644
 --- a/src/modules/partition/core/PartitionModel.cpp
@@ -63,3 +18,30 @@ index a9d49dc37..561be6355 100644
      if ( parentNode == m_device->partitionTable() )
      {
          return QModelIndex();
+diff --git a/src/modules/partition/gui/ChoicePage.cpp b/src/modules/partition/gui/ChoicePage.cpp
+index 96e7793c9..423cb3c96 100644
+--- a/src/modules/partition/gui/ChoicePage.cpp
++++ b/src/modules/partition/gui/ChoicePage.cpp
+@@ -584,8 +584,21 @@ ChoicePage::applyActionChoice( InstallChoice choice )
+                  &ChoicePage::doAlongsideSetupSplitter,
+                  Qt::UniqueConnection );
+         break;
+-    case InstallChoice::NoChoice:
+     case InstallChoice::Manual:
++        if ( m_core->isDirty() )
++        {
++            ScanningDialog::run(
++                QtConcurrent::run(
++                    [ = ]
++                    {
++                        QMutexLocker locker( &m_coreMutex );
++                        m_core->revertDevice( selectedDevice() );
++                    } ),
++                [] {},
++                this );
++        }
++        break;
++    case InstallChoice::NoChoice:
+         break;
+     }
+     updateNextEnabled();
