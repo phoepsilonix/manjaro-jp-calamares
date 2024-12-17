@@ -3,8 +3,8 @@
 pkgname=calamares
 pkgver=3.3.12
 _pkgver=3.3.12
-pkgrel=13
-_commit=363c02faba3e616f807832df7365c9e27fbc3fbb
+pkgrel=14
+_commit=740f1a78d81b7b852b57de71aa37ac1fa83ca260
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=('BSD-2-Clause AND CC0-1.0 AND CC-BY-4.0 AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-3.0-or-later AND MIT')
@@ -24,18 +24,14 @@ source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.t
          001-no-oom.patch
          manjaro_jp.patch
          trying-fix-segv.patch 
-         https://github.com/calamares/calamares/pull/2398.patch
          https://github.com/calamares/calamares/pull/2407.patch
-         https://github.com/calamares/calamares/pull/2412.patch
         )
 
-sha256sums=('d4359b795477e204c6bee45fba05f6aeca26b291a94175f7167071f75fe89ecb'
+sha256sums=('bbe0eaec2051d9d5202ef3b11f980fe247224ae526cf00dba42a5fbe90fb8337'
             '57d905dd62e320938b3288f8713762b7acca68deb6b35be4916bc7031a706f1a'
             '9658c894ee4efc14b213ace5db67a05697c3fb680c36d0ef605162fff54ffbae'
             '96c98d42ec401924bffbc09ebb326e12727abe2aecb93ccf09c4314ccfd908da'
-            'b9d86c267fb53e1d72e6dd0758f0b5c7b4ef35047c071fdc052f722fc862b357'
-            'ab5afa5b59df6cce32c7acf08d6b43d9a75a6217f0ff78e6fc8ef4315456fe0e'
-            '0dd07cf72866a811da268e817397612b290912f0a23538d70158cf00d4e1501f')
+            'ab5afa5b59df6cce32c7acf08d6b43d9a75a6217f0ff78e6fc8ef4315456fe0e')
 options=('!lto' '!strip' 'debug')
 #options=('!lto')
 
