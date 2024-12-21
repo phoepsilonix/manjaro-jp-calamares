@@ -3,7 +3,7 @@
 pkgname=calamares
 pkgver=3.3.12
 _pkgver=3.3.12
-pkgrel=15
+pkgrel=16
 _commit=740f1a78d81b7b852b57de71aa37ac1fa83ca260
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
@@ -26,7 +26,7 @@ source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.t
          trying-fix-segv.patch 
          https://github.com/calamares/calamares/pull/2407.patch
          https://github.com/calamares/calamares/pull/2400.patch
-         https://github.com/calamares/calamares/pull/2402.patch
+         #https://github.com/calamares/calamares/pull/2402.patch
         )
 
 sha256sums=('bbe0eaec2051d9d5202ef3b11f980fe247224ae526cf00dba42a5fbe90fb8337'
@@ -34,8 +34,7 @@ sha256sums=('bbe0eaec2051d9d5202ef3b11f980fe247224ae526cf00dba42a5fbe90fb8337'
             '9658c894ee4efc14b213ace5db67a05697c3fb680c36d0ef605162fff54ffbae'
             '96c98d42ec401924bffbc09ebb326e12727abe2aecb93ccf09c4314ccfd908da'
             'ab5afa5b59df6cce32c7acf08d6b43d9a75a6217f0ff78e6fc8ef4315456fe0e'
-            'e1547868e7f126cecc033fa1d48fd07506d8233c22f77ca2159e86dcaea4d8fa'
-            '136d6547940f749b55d3995f07aa6645fbfe63214a69b169d77a6df0c280d424')
+            'e1547868e7f126cecc033fa1d48fd07506d8233c22f77ca2159e86dcaea4d8fa')
 options=('!lto' '!strip' 'debug')
 #options=('!lto')
 
