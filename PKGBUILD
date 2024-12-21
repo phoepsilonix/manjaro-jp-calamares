@@ -23,8 +23,10 @@ source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.t
          "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
          001-no-oom.patch
          manjaro_jp.patch
-         trying-fix-segv.patch 
-         https://github.com/calamares/calamares/pull/2407.patch
+
+         #https://github.com/calamares/calamares/pull/2407.patch
+         trying-fix-segv.patch::https://github.com/calamares/calamares/commit/5d93fef7de63348a4764323b7e157f21a3497e60.patch
+         mutex.patch::https://github.com/calamares/calamares/commit/35b0165e28a0b3447ac7e5c372da384286e9c97e.patch
          https://github.com/calamares/calamares/pull/2400.patch
          #https://github.com/calamares/calamares/pull/2402.patch
         )
@@ -32,7 +34,7 @@ source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.t
 sha256sums=('bbe0eaec2051d9d5202ef3b11f980fe247224ae526cf00dba42a5fbe90fb8337'
             '57d905dd62e320938b3288f8713762b7acca68deb6b35be4916bc7031a706f1a'
             '9658c894ee4efc14b213ace5db67a05697c3fb680c36d0ef605162fff54ffbae'
-            '96c98d42ec401924bffbc09ebb326e12727abe2aecb93ccf09c4314ccfd908da'
+            '4c3afdc774a774dcb460776e25c91e11749839be93e423bea82d49fc9d0dd623'
             'ab5afa5b59df6cce32c7acf08d6b43d9a75a6217f0ff78e6fc8ef4315456fe0e'
             'e1547868e7f126cecc033fa1d48fd07506d8233c22f77ca2159e86dcaea4d8fa')
 options=('!lto' '!strip' 'debug')
