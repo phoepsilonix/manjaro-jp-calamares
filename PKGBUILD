@@ -20,7 +20,8 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
 source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
-         "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
+         #"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
+         "git+$url#commit=$_commit"
          001-no-oom.patch
          manjaro_jp.patch
 
@@ -30,7 +31,10 @@ source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.t
          mutex.patch::https://github.com/calamares/calamares/commit/35b0165e28a0b3447ac7e5c372da384286e9c97e.patch
          https://github.com/calamares/calamares/pull/2400.patch
          https://github.com/calamares/calamares/commit/b6b09d0bc269c9106a59006923f8960569771524.patch
-         #https://github.com/calamares/calamares/commit/419bedf6617c9543b25769030829b59ebefb3320.patch
+         # QT Warning Disable
+         https://github.com/calamares/calamares/commit/419bedf6617c9543b25769030829b59ebefb3320.patch
+         https://github.com/calamares/calamares/pull/2415.patch
+
          https://github.com/calamares/calamares/commit/af715222926ece9e3d616d3c76bb2634ee70f303.patch
          https://github.com/calamares/calamares/commit/59985eaf4e6b119dc56f4dd43ad51c51fff51c20.patch
          https://github.com/calamares/calamares/commit/c251be3ef3195fe9ca8be6d53829118d0d5021bc.patch
@@ -38,13 +42,15 @@ source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.t
          #https://github.com/calamares/calamares/pull/2402.patch
         )
 
-sha256sums=('bbe0eaec2051d9d5202ef3b11f980fe247224ae526cf00dba42a5fbe90fb8337'
+sha256sums=('5a56f8c32bc94fca40f160175a0112cf77d55c59dca24a93f90bed8814772b21'
             '57d905dd62e320938b3288f8713762b7acca68deb6b35be4916bc7031a706f1a'
             '9658c894ee4efc14b213ace5db67a05697c3fb680c36d0ef605162fff54ffbae'
             '79f9dcfda08951c1d3443d79c71c531205c1efeb9fe0f3adea697c6fead577eb'
             'ab5afa5b59df6cce32c7acf08d6b43d9a75a6217f0ff78e6fc8ef4315456fe0e'
             'e1547868e7f126cecc033fa1d48fd07506d8233c22f77ca2159e86dcaea4d8fa'
             '96ac2f40b6e5dc7c39e6eb6a48063bcec31e57908500feb07f1160b8a52a8b12'
+            'd0a83d2ac2bdd337ba3d7c08c2d500c55dcc96f55bcdb8477d92a3229bfd2e9f'
+            '5a9156b858846843f4a9514e895eaccbac93816a06c7d38f845ed82b84eb6c1c'
             '6ac229b5e8b161c7f27633106770d33738da359445f94e90a6d2e21a0bdbecdc'
             '8e961ea0ddb4efdb1abac56ebe316155e63067ca32d6bad1474ad6e3345df129'
             '23808467c10d33dfc3f8f671c76c1850c50ed352b2a6fc76c6aa47ed52dca0de'
@@ -53,8 +59,9 @@ options=('!lto' '!strip' 'debug')
 #options=('!lto')
 
 prepare() {
-	mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
+	#mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver} || mv ${srcdir}/calamares ${srcdir}/calamares-${pkgver}
 	#mv ${srcdir}/calamares-v${pkgver} ${srcdir}/calamares-${pkgver}
+	mv ${srcdir}/calamares ${srcdir}/calamares-${pkgver}
 	cd ${srcdir}/calamares-${pkgver}
 	
 	# change version
