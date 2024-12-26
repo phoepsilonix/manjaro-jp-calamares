@@ -27,6 +27,7 @@ source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.t
          mutex.patch::https://github.com/calamares/calamares/commit/35b0165e28a0b3447ac7e5c372da384286e9c97e.patch
          https://github.com/calamares/calamares/pull/2400.patch
          https://github.com/calamares/calamares/pull/2413.patch
+         https://github.com/calamares/calamares/pull/2419.patch
         )
 
 sha256sums=('c4f9c98f8c78c8ff3f1ebac7781ba278d1e7853d9f40e238f7c4daec947e68c6'
@@ -34,7 +35,8 @@ sha256sums=('c4f9c98f8c78c8ff3f1ebac7781ba278d1e7853d9f40e238f7c4daec947e68c6'
             '9658c894ee4efc14b213ace5db67a05697c3fb680c36d0ef605162fff54ffbae'
             'ab5afa5b59df6cce32c7acf08d6b43d9a75a6217f0ff78e6fc8ef4315456fe0e'
             'e1547868e7f126cecc033fa1d48fd07506d8233c22f77ca2159e86dcaea4d8fa'
-            '28889f72d60b79d0db7852cbfe7f7da27d155ddd0235bbd042ffc1f9364708fa')
+            '28889f72d60b79d0db7852cbfe7f7da27d155ddd0235bbd042ffc1f9364708fa'
+            '2be6709d5c7198d68a1f8ece86c5449168f7c475b3a33dc7b8955b4ba7ca07a6')
 options=('!lto' '!strip' 'debug')
 #options=('!lto')
 
