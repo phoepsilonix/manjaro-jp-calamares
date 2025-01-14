@@ -1,10 +1,10 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 
 pkgname=calamares
-pkgver=3.3.12
-_pkgver=3.3.12
-pkgrel=18
-_commit=abf3bdb69df040090b0043dd378feb9b8ea60cc5
+pkgver=3.3.13
+_pkgver=3.3.13
+pkgrel=1
+_commit=45ad7bc7a519f3a95ecdd37b394547df95156d60
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=('BSD-2-Clause AND CC0-1.0 AND CC-BY-4.0 AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-3.0-or-later AND MIT')
@@ -25,18 +25,12 @@ source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.t
          001-no-oom.patch
          manjaro_jp.patch
          mutex.patch::https://github.com/calamares/calamares/commit/35b0165e28a0b3447ac7e5c372da384286e9c97e.patch
-         https://github.com/calamares/calamares/pull/2400.patch
-         https://github.com/calamares/calamares/pull/2413.patch
-         https://github.com/calamares/calamares/pull/2419.patch
         )
 
-sha256sums=('c4f9c98f8c78c8ff3f1ebac7781ba278d1e7853d9f40e238f7c4daec947e68c6'
+sha256sums=('b72318fdee0efda3c98b27185287b466d2be3fdc8212224cd5bb8e8baead2173'
             '57d905dd62e320938b3288f8713762b7acca68deb6b35be4916bc7031a706f1a'
             '9658c894ee4efc14b213ace5db67a05697c3fb680c36d0ef605162fff54ffbae'
-            'ab5afa5b59df6cce32c7acf08d6b43d9a75a6217f0ff78e6fc8ef4315456fe0e'
-            'e1547868e7f126cecc033fa1d48fd07506d8233c22f77ca2159e86dcaea4d8fa'
-            '28889f72d60b79d0db7852cbfe7f7da27d155ddd0235bbd042ffc1f9364708fa'
-            '2be6709d5c7198d68a1f8ece86c5449168f7c475b3a33dc7b8955b4ba7ca07a6')
+            'ab5afa5b59df6cce32c7acf08d6b43d9a75a6217f0ff78e6fc8ef4315456fe0e')
 options=('!lto' '!strip' 'debug')
 #options=('!lto')
 
