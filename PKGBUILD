@@ -1,10 +1,10 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dog]org>
 
 pkgname=calamares
-pkgver=3.3.13
-_pkgver=3.3.13
+pkgver=3.3.14
+_pkgver=3.3.14
 pkgrel=1
-_commit=45ad7bc7a519f3a95ecdd37b394547df95156d60
+_commit=34e4ce0e1a1a8dc9eee77c37d3c4cae9954a876b
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=('BSD-2-Clause AND CC0-1.0 AND CC-BY-4.0 AND GPL-3.0-or-later AND LGPL-2.0-only AND LGPL-2.1-only AND LGPL-3.0-or-later AND MIT')
@@ -27,12 +27,11 @@ source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.t
          mutex.patch::https://github.com/calamares/calamares/commit/35b0165e28a0b3447ac7e5c372da384286e9c97e.patch
         )
 
-sha256sums=('b72318fdee0efda3c98b27185287b466d2be3fdc8212224cd5bb8e8baead2173'
+sha256sums=('71bf2054cdfdfb2b399d2981079b23693b9470c0ea92fe589b369275d59f88b5'
             '57d905dd62e320938b3288f8713762b7acca68deb6b35be4916bc7031a706f1a'
             '9658c894ee4efc14b213ace5db67a05697c3fb680c36d0ef605162fff54ffbae'
             'ab5afa5b59df6cce32c7acf08d6b43d9a75a6217f0ff78e6fc8ef4315456fe0e')
 options=('!lto' '!strip' 'debug')
-#options=('!lto')
 
 prepare() {
 	#mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver} || mv ${srcdir}/calamares ${srcdir}/calamares-${pkgver}
