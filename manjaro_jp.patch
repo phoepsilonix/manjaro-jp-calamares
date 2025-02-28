@@ -55,3 +55,26 @@ index 5589add..a0d1677 100644
  
      def terminate(self, proc):
          target_env_call(['killall', '-9', proc])
+diff --git a/src/modules/packagechooser/packagechooser.conf b/src/modules/packagechooser/packagechooser.conf
+index 664fa6f78..db6b2246b 100644
+--- a/src/modules/packagechooser/packagechooser.conf
++++ b/src/modules/packagechooser/packagechooser.conf
+@@ -155,8 +155,8 @@ items:
+       description: "Please pick an office suite from the list. If you don't want to install an office suite, that's fine, you can install one later as needed."
+       description[de]: "Bitte wählen Sie ein Office-Paket von der Liste. Wenn Sie kein Office installieren wollen, kann dies auch zu einer späteren Zeitpunkt erfolgen."
+       screenshot: ":/images/choose-office.jpg"
+-    - id: "libreoffice-still"
+-      package: "libreoffice-still"
++    - id: "libreoffice-fresh"
++      package: "libreoffice-fresh"
+       name: "LibreOffice"
+       name[de]: "LibreOffice"
+       description: "LibreOffice is a powerful and free office suite, used by millions of people around the world. Its clean interface and feature-rich tools help you unleash your creativity and enhance your productivity."
+@@ -169,3 +169,7 @@ items:
+       description: "FreeOffice is a powerful Office suite with word processing, spreadsheet and presentation software. It is seamlessly compatible with Microsoft Office and can be used free of charge. For long-term use, request a free product key directly in the application."
+       description[de]: "FreeOffice ist ein leistungsstarkes Office-Paket mit Textverarbeitung, Tabellenkalkulation und Präsentationssoftware. Es ist nahtlos kompatible zu Microsoft Office und kann frei genutzt werden. Für eine Langzeitnutzung kann ein Produktkey im Programm angefordert werden."
+       screenshot: ":/images/FreeOffice.jpg"
++    - id: "onlyoffice"
++      package: "onlyoffice-desktopeditors"
++      name: "OnlyOffice"
++      description: "Open-source office suite that combines text, spreadsheet and presentation editors."
