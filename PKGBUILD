@@ -29,7 +29,7 @@ source+=(#"$pkgname-$pkgver.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.t
 
 sha256sums=('71bf2054cdfdfb2b399d2981079b23693b9470c0ea92fe589b369275d59f88b5'
             '57d905dd62e320938b3288f8713762b7acca68deb6b35be4916bc7031a706f1a'
-            '8b31909b88c262958f0c41af27f59a38afa917d94ddb25c73092e0fa329b1761')
+            '0dc41df2340b6ebcfb38a744c1a5a8e93c96795aaa0a911588d218730d9e0272')
 options=('!lto' '!strip' 'debug')
 
 prepare() {

@@ -78,3 +78,16 @@ index 664fa6f78..db6b2246b 100644
 +      package: "onlyoffice-desktopeditors"
 +      name: "OnlyOffice"
 +      description: "Open-source office suite that combines text, spreadsheet and presentation editors."
+diff --git a/src/modules/partition/partition.conf b/src/modules/partition/partition.conf
+index 4c78f5814..106ffc76e 100644
+--- a/src/modules/partition/partition.conf
++++ b/src/modules/partition/partition.conf
+@@ -33,7 +33,7 @@
+ # size. Distro's that allow more user latitude can set the minimum lower.
+ efi:
+     mountPoint:         "/boot/efi"
+-    recommendedSize:    300MiB
++    recommendedSize:    500MiB
+     minimumSize:        32MiB
+     label:              "EFI"
+ 
